@@ -1,5 +1,5 @@
-                                  APP PEDIDOS API
-                               -----------------------
+                                APP BOTON PÁNICO BACKEND
+                               --------------------------
 
 Proyecto creado con la versión de laravel "^12.0"
 
