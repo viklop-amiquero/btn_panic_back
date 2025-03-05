@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->enum('tipo_usuario', ['cliente', 'admin']);
-            $table->boolean('verificado');
+            $table->boolean('verificado')->nullable();
             $table->char('estado', 1)->default('1');
             $table->integer('usuario_crea')
                 ->nullable();

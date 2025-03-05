@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('claves', function (Blueprint $table) {
             //
-            $table->foreignId('usuario_id')
+            $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
                 ->cascadeOnDelete()
@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('claves', function (Blueprint $table) {
             //
-            $table->dropForeign('claves_usuario_id_foreign');
+            $table->dropForeign('claves_user_id_foreign');
         });
     }
 };
