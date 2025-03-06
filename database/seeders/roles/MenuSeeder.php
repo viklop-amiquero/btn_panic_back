@@ -40,38 +40,36 @@ class MenuSeeder extends Seeder
         ]);
 
         // Menú y sub menú de seguridad
-        DB::table('menus')->insert(
-            [
-                'nombre' => 'Seguridad',
-                'icono' => 'shield-halved',
-                'descripcion' => 'Menú seguridad',
-                'nivel_parentesco' => $seguridad,
-                'nivel' => '1', // identifica el menus: 1, sub menus: 2
-                'orden' => '5', // el orden en que se mostrará menus y sub menús
-                'tipo_menu' => 'admin'
+        DB::table('menus')->insert([
+            'nombre' => 'Seguridad',
+            'icono' => 'shield-halved',
+            'descripcion' => 'Menú seguridad',
+            'nivel_parentesco' => $seguridad,
+            'nivel' => '1', // identifica el menus: 1, sub menus: 2
+            'orden' => '5', // el orden en que se mostrará menus y sub menús
+            'tipo_menu' => 'admin'
 
-            ],
-            [
-                'nombre' => 'Usuarios',
-                'descripcion' => 'Sub menú de seguridad',
-                'ruta' => '/usuario',
-                'parentesco' => $seguridad,
-                'nivel_parentesco' => uniqid(),
-                'nivel' => '2',
-                'orden' => '1',
-                'tipo_menu' => 'admin'
+        ]);
+        DB::table('menus')->insert([
+            'nombre' => 'Usuarios',
+            'descripcion' => 'Sub menú de seguridad',
+            'ruta' => '/usuario',
+            'parentesco' => $seguridad,
+            'nivel_parentesco' => uniqid(),
+            'nivel' => '2',
+            'orden' => '1',
+            'tipo_menu' => 'admin'
 
-            ],
-            [
-                'nombre' => 'Roles',
-                'descripcion' => 'Sub menú de seguridad',
-                'ruta' => '/rol',
-                'parentesco' => $seguridad,
-                'nivel_parentesco' => uniqid(),
-                'nivel' => '2',
-                'orden' => '2',
-                'tipo_menu' => 'admin'
-            ]
-        );
+        ]);
+        DB::table('menus')->insert([
+            'nombre' => 'Roles',
+            'descripcion' => 'Sub menú de seguridad',
+            'ruta' => '/rol',
+            'parentesco' => $seguridad,
+            'nivel_parentesco' => uniqid(),
+            'nivel' => '2',
+            'orden' => '2',
+            'tipo_menu' => 'admin'
+        ]);
     }
 }

@@ -16,39 +16,41 @@ class PermisoSeeder extends Seeder
         //
         DB::table('permisos')->insert(
             [
-                'create' => 1,
-                'read' => 1,
-                'update' => 1,
-                'delete' => 1,
-                'descripcion' => 'Tiene todos los permisos'
-            ],
-            [
-                'create' => 0,
-                'read' => 1,
-                'update' => 0,
-                'delete' => 0,
-                'descripcion' => 'Solo lectura'
-            ],
-            [
-                'create' => 1,
-                'read' => 0,
-                'update' => 0,
-                'delete' => 0,
-                'descripcion' => 'Solo crea'
-            ],
-            [
-                'create' => 1,
-                'read' => 1,
-                'update' => 1,
-                'delete' => 0,
-                'descripcion' => 'Crea, lectura y edita'
-            ],
-            [
-                'create' => 0,
-                'read' => 0,
-                'update' => 0,
-                'delete' => 0,
-                'descripcion' => 'Sin acceso'
+                [
+                    'create' => 1,
+                    'read' => 1,
+                    'update' => 1,
+                    'delete' => 1,
+                    'descripcion' => 'Tiene todos los permisos'
+                ],
+                [
+                    'create' => 0,
+                    'read' => 1,
+                    'update' => 0,
+                    'delete' => 0,
+                    'descripcion' => 'Solo lectura'
+                ],
+                [
+                    'create' => 1,
+                    'read' => 0,
+                    'update' => 0,
+                    'delete' => 0,
+                    'descripcion' => 'Solo crea'
+                ],
+                [
+                    'create' => 1,
+                    'read' => 1,
+                    'update' => 1,
+                    'delete' => 0,
+                    'descripcion' => 'Crea, lectura y edita'
+                ],
+                [
+                    'create' => 0,
+                    'read' => 0,
+                    'update' => 0,
+                    'delete' => 0,
+                    'descripcion' => 'Sin acceso'
+                ]
             ]
         );
     }

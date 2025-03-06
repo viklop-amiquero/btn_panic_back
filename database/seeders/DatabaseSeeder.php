@@ -12,6 +12,7 @@ use Database\Seeders\roles\PermisoSeeder;
 use Database\Seeders\roles\RoleMenuSeeder;
 use Database\Seeders\roles\RoleSeeder;
 use Database\Seeders\security\ClaveSeeder;
+use Database\Seeders\security\ClienteSeeder;
 use Database\Seeders\security\PersonaSeeder;
 use Database\Seeders\security\UsuarioSeeder;
 use Illuminate\Database\Seeder;
@@ -26,8 +27,9 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call(PersonaSeeder::class);
         $this->call(RoleSeeder::class);
-        $this->call(UsuarioSeeder::class);
         $this->call(ClaveSeeder::class);
+        $this->call(UsuarioSeeder::class);
+        $this->call(ClienteSeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(PermisoSeeder::class);
         $this->call(RoleMenuSeeder::class);
