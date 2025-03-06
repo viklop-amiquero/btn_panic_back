@@ -19,4 +19,9 @@ class Reporte extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function categoria(): BelongsTo
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 }

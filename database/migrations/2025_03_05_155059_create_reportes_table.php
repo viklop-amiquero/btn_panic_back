@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('reportes', function (Blueprint $table) {
             $table->id();
-            $table->string('imagen');
-            $table->string('direccion');
+            $table->string('imagen')->nullable();
             $table->text('descripcion');
-
+            $table->string('direccion');
             $table->foreignId('user_id')
+                ->nullable()
                 ->references('id')
                 ->on('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->foreignId('reporte_id')
+            $table->foreignId('categoria_id')
                 ->references('id')
-                ->on('reportes')
+                ->on('categorias')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
