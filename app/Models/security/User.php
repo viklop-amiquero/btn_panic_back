@@ -3,7 +3,12 @@
 namespace App\Models\security;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\business\Reporte;
+use App\Models\roles\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,5 +49,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function clave(): BelongsTo
+    {
+        return $this->belongsTo(Clave::class);
+    }
+
+    public function persona(): BelongsTo
+    {
+        return $this->belongsTo(Persona::class);
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function reporte(): HasMany
+    {
+        return $this->hasMany(Reporte::class);
     }
 }
