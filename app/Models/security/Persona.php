@@ -9,6 +9,16 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Persona extends Model
 {
     //
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'direccion_domicilio',
+        'dni',
+        'digito_verificador',
+        'telefono',
+        'email',
+    ];
+
     public function user(): HasOne
     {
         return $this->hasOne(User::class);

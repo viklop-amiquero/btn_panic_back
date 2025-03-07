@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Clave extends Model
 {
     //
+    protected $fillable = [
+        'clave_hash',
+        'clave_reset'
+    ];
+
     public function user(): HasOne
     {
 

@@ -28,7 +28,8 @@ class RegistroRequest extends FormRequest
             //
             'name' => ['required', 'string'],
             'apellido' => ['required', 'string'],
-            'dni' => ['required', 'string', 'min:8', 'max:8'],
+            'direccion_domicilio' => ['required', 'string'],
+            'dni' => ['required', 'string', 'min:8', 'max:8', 'unique:personas,dni'],
             'digito_verificador' => ['required', 'string', 'min:1', 'max:1'],
             'telefono' => ['required', 'string', 'min:9', 'max:9'],
             'email' => ['required', 'email'],
@@ -45,9 +46,11 @@ class RegistroRequest extends FormRequest
         return [
             'name' => 'El campo es obligatorio',
             'apellido' => 'El campo es obligatorio',
+            'direccion_domicilio' => 'El dirección es obligatorio',
             'dni' => 'El campo es obligatorio',
             'dni.min' => 'El DNI debe contener 8 dígitos',
             'dni.max' => 'El DNI debe contener 8 dígitos',
+            'dni.unique' => 'El DNI ha sido registrado.',
             'digito_verificador' => 'El campo es obligatorio',
             'digito_verificador.min' => 'El digito verificador debe contener un dígito.',
             'digito_verificador.max' => 'El digito verificador debe contener un dígito.',
