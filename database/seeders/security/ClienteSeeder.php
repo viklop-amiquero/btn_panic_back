@@ -17,18 +17,6 @@ class ClienteSeeder extends Seeder
         DB::table('clientes')->insert(
             [
                 [
-                    'persona_id' => 1,
-                    'clave_id' => 3,
-                    'username' => '78542136',
-                    'verificado' => true,
-                ],
-                [
-                    'persona_id' => 2,
-                    'clave_id' => 4,
-                    'username' => '78900136',
-                    'verificado' => true,
-                ],
-                [
                     'persona_id' => 3,
                     'clave_id' => 5,
                     'username' => 'maria@gmail.com',
@@ -56,6 +44,18 @@ class ClienteSeeder extends Seeder
                     'persona_id' => 7,
                     'clave_id' => 9,
                     'username' => 'carlosa@gmail.com',
+                    'verificado' => null,
+                ],
+                [
+                    'persona_id' => 8,
+                    'clave_id' => 8,
+                    'username' => 'jessica@gmail.com',
+                    'verificado' => null,
+                ],
+                [
+                    'persona_id' => 9,
+                    'clave_id' => 9,
+                    'username' => 'ximena@gmail.com',
                     'verificado' => null,
                 ],
 
