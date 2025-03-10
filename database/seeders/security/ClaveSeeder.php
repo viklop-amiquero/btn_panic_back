@@ -16,13 +16,13 @@ class ClaveSeeder extends Seeder
     {
         //
         DB::table('claves')->insert([
-            'clave_hash' => Hash::make('01547896'),
-            'clave_reset' => Hash::make('01547896'),
+            'clave_hash' => Hash::make('correo'),
+            'clave_reset' => Hash::make('correo'),
         ]);
 
         DB::table('claves')->insert([
-            'clave_hash' => Hash::make('12547896'),
-            'clave_reset' => Hash::make('12547896'),
+            'clave_hash' => Hash::make('correo'),
+            'clave_reset' => Hash::make('correo'),
         ]);
 
         DB::table('claves')->insert([

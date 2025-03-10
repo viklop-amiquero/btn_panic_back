@@ -36,6 +36,15 @@ return [
     */
 
     'guards' => [
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+            // ...
+        ],
+        'clientes' => [  // Guard para clientes
+            'driver' => 'session',
+            'provider' => 'clientes',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -62,9 +71,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', App\Models\security\User::class),
+            // 'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
+        'clientes' => [  // Proveedor para clientes
+            'driver' => 'eloquent',
+            'model' => App\Models\security\Cliente::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -93,6 +106,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'clientes' => [
+            'provider' => 'clientes', // Usa el provider 'clientes'
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Contracts\Auth\Authenticatable;  // Importa la interfaz
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait; // Importa el trait
 
-class Cliente  extends Model
+class Cliente  extends Model implements Authenticatable
 {
     //
-    use HasApiTokens;
+    use HasApiTokens, AuthenticatableTrait;
 
     protected $fillable = [
         'persona_id',
