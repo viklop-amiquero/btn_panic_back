@@ -38,12 +38,12 @@ class AuthController extends Controller
             'username' => $data['email']
         ]);
 
-        return [
+        return response()->json([
             'token' => $cliente->createToken('token')->plainTextToken,
             'cliente' => $cliente
-        ];
+        ]);
 
-        return $data;
+        // return $data;
     }
 
     public function login(LoginRequest $request)
@@ -88,8 +88,8 @@ class AuthController extends Controller
         $user = $request->user();
         $user->currentAccessToken()->delete();
 
-        return [
+        return response()->json([
             'user' => null
-        ];
+        ]);
     }
 }

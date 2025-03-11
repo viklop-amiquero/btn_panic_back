@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Categoria extends Model
 {
     //
+    protected $fillable = [
+        'nombre',
+        'descripcion'
+    ];
+
     public function reporte(): HasMany
     {
         return $this->hasMany(Reporte::class);
