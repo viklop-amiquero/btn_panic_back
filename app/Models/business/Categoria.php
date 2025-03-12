@@ -10,7 +10,9 @@ class Categoria extends Model
     //
     protected $fillable = [
         'nombre',
-        'descripcion'
+        'descripcion',
+        'usuario_crea',
+        'usuario_modifica'
     ];
 
     public function reporte(): HasMany

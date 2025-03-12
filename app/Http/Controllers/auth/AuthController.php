@@ -35,7 +35,7 @@ class AuthController extends Controller
         $cliente = Cliente::create([
             'persona_id' => $persona->id,
             'clave_id' => $clave->id,
-            'username' => $data['email']
+            'username' => $data['email'],
         ]);
 
         return response()->json([

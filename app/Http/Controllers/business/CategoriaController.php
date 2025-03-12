@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\business\CategoriaRequest;
 use App\Http\Resources\business\CategoriaCollection;
 use App\Models\business\Categoria;
+use App\Models\security\Cliente;
+use App\Models\security\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -15,7 +18,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+
         return new CategoriaCollection(Categoria::where('estado', '1')->get());
     }
 
@@ -29,12 +32,12 @@ class CategoriaController extends Controller
 
         $categoria = Categoria::create([
             'nombre' => strtoupper($data['nombre']),
-            'descripcion' => strtoupper($data['descripcion'])
+            'descripcion' => strtoupper($data['descripcion']),
+            'usuario_crea' => Auth::user()->id
         ]);
 
         return response()->json([
-            'message' => 'Categoría creado exitosamente.',
-            // 'categoria' => $categoria
+            'message' => 'Categoría creado exitosamente.'
         ]);
     }
 
@@ -62,6 +65,7 @@ class CategoriaController extends Controller
 
         $data['nombre'] = strtoupper($data['nombre']);
         $data['descripcion'] = strtoupper($data['descripcion']);
+        $data['usuario_modifica'] = Auth::user()->id;
 
         $categoria->update($data);
 
