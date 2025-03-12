@@ -33,7 +33,8 @@ class CategoriaController extends Controller
         $categoria = Categoria::create([
             'nombre' => strtoupper($data['nombre']),
             'descripcion' => strtoupper($data['descripcion']),
-            'usuario_crea' => Auth::user()->id
+            'usuario_crea' => Auth::user()->id,
+            'created_at' => now()
         ]);
 
         return response()->json([

@@ -19,21 +19,25 @@ class ReporteSeeder extends Seeder
             'user_id' => 1,
             'cliente_id' => 1,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            'direccion' => 'Avenida las palmeras 773'
+            'direccion' => 'Avenida las palmeras 773',
+            'created_at' => now()
+
         ]);
 
         DB::table('reportes')->insert([
             'categoria_id' => 2,
             'cliente_id' => 1,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            'direccion' => 'Avenida las palmeras 773'
+            'direccion' => 'Avenida las palmeras 773',
+            'created_at' => now()
         ]);
 
         DB::table('reportes')->insert([
             'categoria_id' => 3,
             'cliente_id' => 1,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            'direccion' => 'Avenida las palmeras 773'
+            'direccion' => 'Avenida las palmeras 773',
+            'created_at' => now()
         ]);
 
         DB::table('reportes')->insert([
@@ -41,7 +45,8 @@ class ReporteSeeder extends Seeder
             'user_id' => 1,
             'cliente_id' => 2,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            'direccion' => 'Avenida las palmeras 773'
+            'direccion' => 'Avenida las palmeras 773',
+            'created_at' => now()
         ]);
 
         DB::table('reportes')->insert([
@@ -49,7 +54,8 @@ class ReporteSeeder extends Seeder
             'user_id' => 1,
             'cliente_id' => 3,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            'direccion' => 'Avenida las palmeras 773'
+            'direccion' => 'Avenida las palmeras 773',
+            'created_at' => now()
         ]);
     }
 }

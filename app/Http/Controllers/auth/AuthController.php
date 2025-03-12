@@ -22,20 +22,23 @@ class AuthController extends Controller
             'nombre' => strtoupper($data['name']),
             'apellido' => strtoupper($data['apellido']),
             'direccion_domicilio' => strtoupper($data['direccion_domicilio']),
-            'dni' => $data['dni'],
-            'digito_verificador'  => $data['digito_verificador'],
+            // 'dni' => $data['dni'],
+            // 'digito_verificador'  => $data['digito_verificador'],
             'telefono'  => $data['telefono'],
+            'created_at' => now()
         ]);
 
         $clave = Clave::create([
             'clave_hash' => bcrypt($data['password']),
-            'clave_reset' => bcrypt($data['dni'])
+            'clave_reset' => bcrypt($data['dni']),
+            'created_at' => now()
         ]);
 
         $cliente = Cliente::create([
             'persona_id' => $persona->id,
             'clave_id' => $clave->id,
             'username' => $data['email'],
+            'created_at' => now()
         ]);
 
         return response()->json([

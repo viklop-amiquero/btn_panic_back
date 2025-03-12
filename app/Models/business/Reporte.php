@@ -10,6 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Reporte extends Model
 {
     //
+    protected $fillable = [
+        'imagen',
+        'descripcion',
+        'direccion',
+        'categoria_id',
+        'cliente_id',
+        'created_at',
+    ];
+
     public function cliente(): BelongsTo
     {
         return $this->belongsTo(Cliente::class);
