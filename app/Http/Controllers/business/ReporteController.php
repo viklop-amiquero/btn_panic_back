@@ -119,10 +119,36 @@ class ReporteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reporte $reporte)
+    public function destroy($id)
     {
         //
+        $user = Auth::user();
 
+        if ($user->isUser()) {
+            // usuario
+            return [
+                'message' => 'opearcion no premitida.',
+                'user' => $user->isUser()
+            ];
+        }
 
+        $reporte = Reporte::where('id', $id)
+            ->where('cliente_id', $user->id)
+            ->first();
+
+        if (!$reporte) {
+            return response()->json([
+                'message' => 'Operación no permitida.'
+            ], 404);
+        }
+
+        $reporte->estado = '0';
+        $reporte->save();
+
+        return response()->json(
+            [
+                'message' => 'Reporte eliminado exitosamente.'
+            ]
+        );
     }
 }
