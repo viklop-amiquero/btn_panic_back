@@ -22,6 +22,11 @@ class Cliente  extends Model implements Authenticatable
         'username'
     ];
 
+    public function isUser(): bool
+    {
+        return false;
+    }
+
     public function clave(): BelongsTo
     {
         return $this->belongsTo(Clave::class);

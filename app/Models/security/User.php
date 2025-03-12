@@ -52,6 +52,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function isUser(): bool
+    {
+        return true;
+    }
+
     public function clave(): BelongsTo
     {
         return $this->belongsTo(Clave::class);

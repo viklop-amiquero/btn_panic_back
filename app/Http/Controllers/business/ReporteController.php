@@ -18,78 +18,18 @@ class ReporteController extends Controller
      */
     public function index()
     {
-        //
-        $user = User::find(Auth::user()->id);
-        $cliente = Cliente::find(Auth::user()->id);
+        $user = Auth::user();
 
-        if ($user->confirm_user) {
-            return 'es un usuario';
+        // return $user->isCliente();
+
+        if (!$user->isUser()) {
+            // Cliente
+            return new ReporteCollection(Reporte::where('cliente_id', $user->id)->get());
         }
 
-        return 'es un cliente';
-        // if(!$user && !$cliente->confirm_user){
+        // return 'es un usuario';
 
-        // }
-
-        // if(){
-
-        // }
-
-        // return [
-        //     "user" => $user->confirm_user,
-        //     "cliente" => $cliente->confirm_user
-        // ];
-
-        if (!$user && !$cliente->confirm_user) {
-            // Es un cliente
-            return [
-                "message" => 'es un cliente.',
-                "condicional" => !$user,
-                "!cliente->confirm_user" => !$cliente->confirm_user
-            ];
-        }
-
-
-
-        // if ($user->confirm_user) {
-        //     return [
-        //         "message" => 'es un usuario.',
-        //         "condicional" => $user->confirm_user
-        //     ];
-        // }
-
-
-        // verificar que exista usuario
-        // if (!$user) {
-        // Es un cliente
-
-        //     return [
-        //         "message" => 'es un cliente first if',
-        //         "condicional" => !$user
-        //     ];
-        // }
-
-        // confirmar que es un usuario
-        // if (!$user->role) {
-        //Es un cliente
-
-        //     return [
-        //         "message" => 'Es un cliente second if',
-        //         "codicional" => !$user->role
-        //     ];
-        // }
-
-        // return [
-        //     "message" => 'Es un usuario',
-        //     "codicional" => $user->role
-        // ];
-
-        // $cliente = Cliente::find(Auth::user()->id);
-
-        // if ($user->role->id) {
-        //     return 'es un usuario';
-        // }
-        // return 'es un cliente';
+        return new ReporteCollection(Reporte::all());
     }
 
 
