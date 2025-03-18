@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         $clave = Clave::create([
             'clave_hash' => bcrypt($data['password']),
-            // 'clave_reset' => bcrypt($data['dni']),
+            'clave_reset' => bcrypt('correo'),
             'created_at' => now()
         ]);
 
@@ -42,8 +42,9 @@ class AuthController extends Controller
         ]);
 
         return response()->json([
+            "message" => 'Registro exitoso.',
             'token' => $cliente->createToken('token')->plainTextToken,
-            'cliente' => $cliente
+            // 'cliente' => $cliente
         ]);
 
         // return $data;
