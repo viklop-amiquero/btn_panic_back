@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         $clave = Clave::create([
             'clave_hash' => bcrypt($data['password']),
-            'clave_reset' => bcrypt($data['dni']),
+            // 'clave_reset' => bcrypt($data['dni']),
             'created_at' => now()
         ]);
 
