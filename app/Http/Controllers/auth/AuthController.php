@@ -22,7 +22,7 @@ class AuthController extends Controller
             'nombre' => strtoupper($data['name']),
             'apellido' => strtoupper($data['apellido']),
             'direccion_domicilio' => strtoupper($data['direccion_domicilio']),
-            // 'dni' => $data['dni'],
+            'dni' => $data['dni'],
             // 'digito_verificador'  => $data['digito_verificador'],
             'telefono'  => $data['telefono'],
             'created_at' => now()
@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         $clave = Clave::create([
             'clave_hash' => bcrypt($data['password']),
-            'clave_reset' => bcrypt('correo'),
+            'clave_reset' => bcrypt($data['dni']),
             'created_at' => now()
         ]);
 
