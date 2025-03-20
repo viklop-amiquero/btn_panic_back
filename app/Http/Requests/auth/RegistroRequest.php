@@ -3,7 +3,6 @@
 namespace App\Http\Requests\auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password as PasswordRules;
 
 
@@ -29,7 +28,7 @@ class RegistroRequest extends FormRequest
             'name' => ['required', 'string', 'regex:/^[\pL\s]+$/u'],
             'apellido' => ['required', 'string', 'regex:/^[\pL\s]+$/u'],
             'direccion_domicilio' => ['required', 'string'],
-            // 'dni' => ['required', 'string', 'regex:/^\d{8}$/', 'unique:personas,dni'],
+            'dni' => ['required', 'string', 'regex:/^\d{8}$/', 'unique:personas,dni'],
             // 'digito_verificador' => ['required', 'string', 'regex:/^\d{1}$/'],
             'telefono' => ['required', 'string', 'regex:/^\d{9}$/'],
             'email' => ['required', 'email', 'unique:clientes,username'],
