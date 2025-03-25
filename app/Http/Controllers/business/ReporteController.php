@@ -47,6 +47,10 @@ class ReporteController extends Controller
             return;
         }
 
+        // return response()->json([
+        //     "usuario" => $user->id
+        // ]);
+
         $data = $request->validated();
 
         if (!$data['imagen']) {
@@ -54,7 +58,8 @@ class ReporteController extends Controller
                 'descripcion' => $data['descripcion'],
                 'direccion' => $data['direccion'],
                 'categoria_id' => $data['categoria_id'],
-                'cliente_id' => $data['cliente_id'],
+                // 'cliente_id' => $data['cliente_id'],
+                'cliente_id' => $user->id,
                 'created_at' => now(),
             ]);
 
@@ -68,7 +73,7 @@ class ReporteController extends Controller
             'descripcion' => $data['descripcion'],
             'direccion' => $data['direccion'],
             'categoria_id' => $data['categoria_id'],
-            'cliente_id' => $data['cliente_id'],
+            'cliente_id' => $user->id,
             'created_at' => now(),
         ]);
 
