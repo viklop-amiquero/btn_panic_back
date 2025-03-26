@@ -60,6 +60,8 @@ class ReporteController extends Controller
                 'categoria_id' => $data['categoria_id'],
                 // 'cliente_id' => $data['cliente_id'],
                 'cliente_id' => $user->id,
+                'latitud' => $data['latitud'],
+                'longitud' => $data['longitud'],
                 'created_at' => now(),
             ]);
 
@@ -73,6 +75,8 @@ class ReporteController extends Controller
             'descripcion' => $data['descripcion'],
             'direccion' => $data['direccion'],
             'categoria_id' => $data['categoria_id'],
+            'latitud' => $data['latitud'],
+            'longitud' => $data['longitud'],
             'cliente_id' => $user->id,
             'created_at' => now(),
         ]);

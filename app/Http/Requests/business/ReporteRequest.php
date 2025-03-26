@@ -27,6 +27,8 @@ class ReporteRequest extends FormRequest
             'descripcion' => 'required',
             'direccion' => ['required'],
             'categoria_id' => ['required', 'numeric'],
+            'latitud' => ['required', 'numeric'],
+            'longitud' => ['required', 'numeric']
             // 'cliente_id' => ['required', 'numeric']
         ];
     }
@@ -38,6 +40,8 @@ class ReporteRequest extends FormRequest
             'direccion' => 'La dirección es obligatorio.',
             'categoria_id' => 'La categoría es obligatorio.',
             'categoria_id.numeric' => 'La categoría es inválido.',
+            'latitud' => 'La latitud es obligatorio.',
+            'longitud' => 'La longitud es obligatorio.'
             // 'cliente_id' => 'El cliente es obligatorio.',
             // 'cliente_id.numeric' => 'El cliente es inválido.',
         ];

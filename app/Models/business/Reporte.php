@@ -15,6 +15,8 @@ class Reporte extends Model
         'descripcion',
         'direccion',
         'categoria_id',
+        'latitud',
+        'longitud',
         'cliente_id',
         'created_at',
     ];

@@ -29,6 +29,9 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
+            $table->decimal('latitud');
+            $table->decimal('longitud');
+
             $table->char('estado', 1)->default('1');
             $table->integer('usuario_crea')
                 ->nullable();

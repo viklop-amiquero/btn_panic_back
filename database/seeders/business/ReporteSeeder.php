@@ -20,6 +20,8 @@ class ReporteSeeder extends Seeder
             'cliente_id' => 1,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             'direccion' => 'Avenida las palmeras 773',
+            'latitud' => -13.155092,
+            'longitud' => -74.23107,
             'created_at' => now()
 
         ]);
@@ -29,6 +31,8 @@ class ReporteSeeder extends Seeder
             'cliente_id' => 1,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             'direccion' => 'Avenida las palmeras 773',
+            'latitud' => -13.154844,
+            'longitud' => -74.227914,
             'created_at' => now()
         ]);
 
@@ -37,6 +41,8 @@ class ReporteSeeder extends Seeder
             'cliente_id' => 1,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             'direccion' => 'Avenida las palmeras 773',
+            'latitud' =>  -13.155077,
+            'longitud' =>  -74.226389,
             'created_at' => now()
         ]);
 
@@ -46,6 +52,8 @@ class ReporteSeeder extends Seeder
             'cliente_id' => 2,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             'direccion' => 'Avenida las palmeras 773',
+            'latitud' =>  -13.157525,
+            'longitud' =>  -74.223748,
             'created_at' => now()
         ]);
 
@@ -55,6 +63,8 @@ class ReporteSeeder extends Seeder
             'cliente_id' => 3,
             'descripcion' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             'direccion' => 'Avenida las palmeras 773',
+            'latitud' =>  -13.159701,
+            'longitud' =>  -74.223703,
             'created_at' => now()
         ]);
     }
