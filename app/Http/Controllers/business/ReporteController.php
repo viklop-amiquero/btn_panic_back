@@ -21,7 +21,7 @@ class ReporteController extends Controller
         if (!$user->isUser()) {
             // Cliente
             return new ReporteCollection(
-                Reporte::where('cliente_id', $user->id)
+                Reporte::where('cliente_id', $user->id)->orderBy('created_at', 'DESC')
                     ->paginate(10)
             );
         }
