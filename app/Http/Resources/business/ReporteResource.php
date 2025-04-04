@@ -22,19 +22,24 @@ class ReporteResource extends JsonResource
             'descripcion' => $this->descripcion,
             'categoria' => $this->categoria->nombre,
             'direccion' => $this->direccion,
-            'usuario_nombre' => $this->user->persona->nombre ?? '',
-            'usuario_apellido' => $this->user->persona->apellido ?? '',
+            // Si esa expresión no es null, devuelve ese valor
+            // Si es null, devuelve lo que está a su derecha
+            'usuario_nombre' => $this->user->persona->nombre ?? null,
+            'usuario_apellido' => $this->user->persona->apellido ?? null,
             // 'user_id' => $this->user_id,
-            'cliente' => $this->cliente->persona->nombre . ' ' . $this->cliente->persona->apellido,
+            'cliente_nombre' => $this->cliente->persona->nombre,
+            'cliente_apellido' => $this->cliente->persona->apellido,
             'latitud' => $this->latitud,
             'longitud' => $this->longitud,
             'estado' => $this->estado,
+            'usuario_crea' => $this->usuario_crea,
+            'usuario_modifica' => $this->usuario_modifica,
             'created_at' => Carbon::parse($this->created_at)->format('h:i A'),
             'created_date' => Carbon::parse($this->created_at)->format('d/m/Y'),
+            'updated_at' => $this->updated_at ? Carbon::parse($this->updated_at)->format('h:i A') : null,
+            'updated_date' => $this->updated_at ? Carbon::parse($this->updated_at)->format('d/m/Y') : null,
             // 'updated_at' => Carbon::parse($this->updated_at)->format('h:i A'),
             // 'updated_date' => Carbon::parse($this->updated_at)->format('d/m/Y'),
-            // 'created_at' => $this->created_at,
-            // 'updated_at' => $this->updated_at
         ];
     }
 }
