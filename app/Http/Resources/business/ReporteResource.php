@@ -34,6 +34,7 @@ class ReporteResource extends JsonResource
             'estado' => $this->estado,
             'usuario_crea' => $this->usuario_crea,
             'usuario_modifica' => $this->usuario_modifica,
+            // 'created_at' => Carbon::parse($this->created_at)->locale('es')->diffForHumans(),
             'created_at' => Carbon::parse($this->created_at)->format('h:i A'),
             'created_date' => Carbon::parse($this->created_at)->format('d/m/Y'),
             'updated_at' => $this->updated_at ? Carbon::parse($this->updated_at)->format('h:i A') : null,
