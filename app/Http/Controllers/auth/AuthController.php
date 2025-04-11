@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\auth;
 
 use Illuminate\Http\Request;
+use App\Models\security\User;
 use App\Models\security\Clave;
 use App\Models\security\Cliente;
 use App\Models\security\Persona;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\RegistroRequest;
-use App\Models\security\User;
+use App\Http\Resources\business\ReporteCollection;
+use App\Http\Resources\security\ClienteResource;
 
 class AuthController extends Controller
 {
@@ -80,6 +83,17 @@ class AuthController extends Controller
         }
 
         // Generar token y retornar usuario autenticado
+
+        if ($role === 'cliente') {
+            $reportes = $cliente->reporte()->orderBy('created_at', 'DESC')->paginate(10);
+            return response()->json([
+                'token' => $authEntity->createToken("{$role}-token")->plainTextToken,
+                'role' => $role,
+                'user' => new ClienteResource($authEntity),
+                'reports' => new ReporteCollection($reportes)
+            ]);
+        }
+
         return response()->json([
             'token' => $authEntity->createToken("{$role}-token")->plainTextToken,
             'role' => $role,
