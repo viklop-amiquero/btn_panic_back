@@ -66,7 +66,7 @@ class ReporteController extends Controller
             ]);
 
             return response()->json([
-                "message" => "El reporte fue creado exitosamente."
+                "message" => "El reporte ha sido enviado exitosamente."
             ]);
         }
 
@@ -83,7 +83,7 @@ class ReporteController extends Controller
 
 
         return response()->json([
-            "message" => "El reporte fue creado exitosamente."
+            "message" => "El reporte ha sido enviado exitosamente."
         ]);
     }
 
@@ -136,7 +136,7 @@ class ReporteController extends Controller
         if ($user->isUser()) {
             // usuario
             return [
-                'message' => 'opearcion no premitida.',
+                'message' => 'Opearcion no premitida.',
                 'user' => $user->isUser()
             ];
         }
