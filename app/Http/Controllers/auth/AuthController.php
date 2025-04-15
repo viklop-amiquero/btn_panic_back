@@ -13,6 +13,8 @@ use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\RegistroRequest;
 use App\Http\Resources\business\ReporteCollection;
 use App\Http\Resources\security\ClienteResource;
+use App\Http\Resources\security\PersonaResource;
+use App\Http\Resources\security\UserResource;
 
 class AuthController extends Controller
 {
@@ -90,14 +92,20 @@ class AuthController extends Controller
                 'token' => $authEntity->createToken("{$role}-token")->plainTextToken,
                 'role' => $role,
                 'user' => new ClienteResource($authEntity),
-                'reports' => new ReporteCollection($reportes)
+                'reports' => new ReporteCollection($reportes),
+                // 'persona' => new PersonaResource($authEntity->persona)
+                'persona' => $authEntity->persona
             ]);
         }
 
         return response()->json([
             'token' => $authEntity->createToken("{$role}-token")->plainTextToken,
             'role' => $role,
-            'user' => $authEntity,
+            'user' => new UserResource($authEntity),
+            // 'persona' => new PersonaResource($authEntity->persona)
+            // 'persona' => new UserResource($authEntity->persona)
+            'persona' => new PersonaResource($authEntity->persona)
+
         ]);
     }
 
