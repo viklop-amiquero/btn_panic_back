@@ -3,10 +3,10 @@
 
 ### 📦 Proyecto creado con:
 
-> Composer version 2.8.5
-> Laravel 12.0
-> PHP version 8.4.3 
-> mysql
+- **Composer version 2.8.5
+- **Laravel 12.0
+- **PHP version 8.4.3 
+- **mysql
 
 ----
 
