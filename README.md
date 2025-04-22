@@ -33,11 +33,26 @@ DB_PASSWORD=root
 
 ## 🚀 Despliegue
 
+clonar el proyecto y subir a cpanel.
+
+### abrir la terminal y ejecutar los comandos.
 ```bash
+composer install
 php artisan key:generate
+```
+### Crear el archivo .env y copiar de .env-example, remplazar las credenciales.
+```bash
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://botondepanico.muniandresavelinocaceresdorregaray.gob.pe/
+
+DB_DATABASE=muniandr_btnp
+DB_USERNAME=muniandr_btnp
+DB_PASSWORD=boton@2025
 ```
 
 > [!IMPORTANT]
+
 > - Generar la clave en el mismo servidor.
 > - Cualquier error ver storage/logs/laravel.log
   
