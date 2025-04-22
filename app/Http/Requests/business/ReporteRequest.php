@@ -23,7 +23,8 @@ class ReporteRequest extends FormRequest
     {
         return [
             //
-            'imagen' => 'nullable',
+            // 'imagen' => 'nullable',
+            'imagen' => 'nullable|image|max:2048',
             'descripcion' => 'required',
             'direccion' => ['required'],
             'categoria_id' => ['required', 'numeric'],

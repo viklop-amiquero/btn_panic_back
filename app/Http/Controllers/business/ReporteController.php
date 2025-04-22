@@ -44,34 +44,44 @@ class ReporteController extends Controller
 
         if ($user->isUser()) {
             // usuario
-            return;
+            return response()->json([
+                'message' => 'Usuario no permitida.'
+            ], 403);
+            // return;
         }
 
         // return response()->json([
         //     "usuario" => $user->id
         // ]);
 
+
+        // if (!$data['imagen']) {
+        //     $reporte = Reporte::create([
+        //         'descripcion' => $data['descripcion'],
+        //         'direccion' => $data['direccion'],
+        //         'categoria_id' => $data['categoria_id'],
+        //         // 'cliente_id' => $data['cliente_id'],
+        //         'cliente_id' => $user->id,
+        //         'latitud' => $data['latitud'],
+        //         'longitud' => $data['longitud'],
+        //         'created_at' => now(),
+        //     ]);
+
+        //     return response()->json([
+        //         "message" => "El reporte ha sido enviado exitosamente."
+        //     ]);
+        // }
+
         $data = $request->validated();
 
-        if (!$data['imagen']) {
-            $reporte = Reporte::create([
-                'descripcion' => $data['descripcion'],
-                'direccion' => $data['direccion'],
-                'categoria_id' => $data['categoria_id'],
-                // 'cliente_id' => $data['cliente_id'],
-                'cliente_id' => $user->id,
-                'latitud' => $data['latitud'],
-                'longitud' => $data['longitud'],
-                'created_at' => now(),
-            ]);
+        $path_image = null;
 
-            return response()->json([
-                "message" => "El reporte ha sido enviado exitosamente."
-            ]);
+        if ($request->hasfile('imagen')) {
+            $path_image = $request->file('imagen')->store('reportes', 'public');
         }
 
         $reporte = Reporte::create([
-            'imagen' => $data['imagen'],
+            'imagen' => $path_image,
             'descripcion' => $data['descripcion'],
             'direccion' => $data['direccion'],
             'categoria_id' => $data['categoria_id'],
@@ -105,7 +115,10 @@ class ReporteController extends Controller
 
         if (!$user->isUser()) {
             // Cliente
-            return;
+            return response()->json([
+                'message' => 'Cliente no permitida.'
+            ], 403);
+            // return;
         }
 
         $reporte = Reporte::find($id);
@@ -135,10 +148,9 @@ class ReporteController extends Controller
 
         if ($user->isUser()) {
             // usuario
-            return [
-                'message' => 'Opearcion no premitida.',
-                'user' => $user->isUser()
-            ];
+            return response()->json([
+                'message' => 'Usuario no permitido.'
+            ], 403);
         }
 
         $reporte = Reporte::where('id', $id)
