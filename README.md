@@ -19,15 +19,15 @@
 4. Crear el archivo ".env" y copiar todo de .env-example, reescribir lo siguiente:
 
 ```bash
-                    ####ojo: 127.0.0.1 ó "localhost"
-                    el user y password, es el usuario y contraseña de "mysql". 
+####ojo: 127.0.0.1 ó "localhost"
+el user y password, es el usuario y contraseña de "mysql". 
 
-                    DB_CONNECTION=mysql
-                    DB_HOST=127.0.0.1 
-                    DB_PORT=3306
-                    DB_DATABASE=boton_panico_back
-                    DB_USERNAME=root
-                    DB_PASSWORD=root
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1 
+DB_PORT=3306
+DB_DATABASE=boton_panico_back
+DB_USERNAME=root
+DB_PASSWORD=root
 ```
 5. En caso haya un error que no encuentre la base de datos "boton_panico_back", crear el "schema" de nombre "boton_panico_back" en el DBMS.
 
@@ -38,6 +38,6 @@ php artisan key:generate
 ```
 
 > [!IMPORTANT]
-> Generar la clave en el mismo servidor.
-> Cualquier error ver storage/logs/laravel.log
+- Generar la clave en el mismo servidor.
+- Cualquier error ver storage/logs/laravel.log
   
