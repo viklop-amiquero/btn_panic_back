@@ -38,6 +38,6 @@ php artisan key:generate
 ```
 
 > [!IMPORTANT]
-- Generar la clave en el mismo servidor.
-- Cualquier error ver storage/logs/laravel.log
+> - Generar la clave en el mismo servidor.
+> - Cualquier error ver storage/logs/laravel.log
   
