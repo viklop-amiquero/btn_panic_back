@@ -1,4 +1,4 @@
-# 🚨 APP Botón de Pánico - Frontend
+# 🚨 APP Botón de Pánico - Backend
 --------
 
 ### 📦 Proyecto creado con:
