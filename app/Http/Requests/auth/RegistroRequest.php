@@ -61,7 +61,7 @@ class RegistroRequest extends FormRequest
             'email.unique' => 'El correo electrónico ya ha sido tomado.',
             'password.required' => 'La contraseña es obligatoria.',
             'password.confirmed' => 'Debe confirmar su contraseña.',
-            'password.*' => 'La contraseña de contener menos una letra y un número.',
+            'password.*' => 'La contraseña de contener por lo menos una letra y un número.',
         ];
     }
 }

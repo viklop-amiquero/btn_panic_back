@@ -19,7 +19,7 @@ class UsuarioSeeder extends Seeder
             [
                 'persona_id' => 2,
                 'role_id' => 1,
-                'clave_id' => 2,
+                'clave_id' => 8,
                 'username' => '78542136',
             ]
         );
@@ -27,7 +27,7 @@ class UsuarioSeeder extends Seeder
         DB::table('users')->insert([
             'persona_id' => 2,
             'role_id' => 1,
-            'clave_id' => 2,
+            'clave_id' => 9,
             'username' => '71112221',
         ]);
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\business\CategoriaController;
 use App\Http\Controllers\business\ReporteController;
+use App\Http\Controllers\password\PasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/password-recover', [PasswordController::class, 'recoverPassword']);

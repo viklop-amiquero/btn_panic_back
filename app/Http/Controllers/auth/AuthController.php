@@ -15,6 +15,7 @@ use App\Http\Resources\business\ReporteCollection;
 use App\Http\Resources\security\ClienteResource;
 use App\Http\Resources\security\PersonaResource;
 use App\Http\Resources\security\UserResource;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -34,8 +35,10 @@ class AuthController extends Controller
         ]);
 
         $clave = Clave::create([
-            'clave_hash' => bcrypt($data['password']),
-            'clave_reset' => bcrypt($data['dni']),
+            // 'clave_hash' => bcrypt($data['password']),
+            // 'clave_reset' => bcrypt($data['dni']),
+            'clave_hash' => Hash::make(($data['password'])),
+            'clave_reset' => Hash::make($data['dni']),
             'created_at' => now()
         ]);
 
