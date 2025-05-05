@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->string('apellido_materno', 20);
             $table->string('direccion_domicilio', 100);
             $table->string('dni')->unique();
-            // $table->string('digito_verificador');
+            $table->string('digito_verificador');
             $table->string('telefono');
             $table->char('estado', 1)->default('1');
             $table->integer('usuario_crea')

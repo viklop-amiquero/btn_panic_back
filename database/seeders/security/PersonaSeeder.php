@@ -20,7 +20,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Antonio',
                 'direccion_domicilio' => 'Pasaje Primavera 12',
                 'dni' => '12547896',
-                // 'digito_verificador' => '1',
+                'digito_verificador' => '1',
                 'telefono' => '951247023',
             ],
             [
@@ -28,7 +28,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Salazar',
                 'direccion_domicilio' => 'Jirón las Bagnolias 1149',
                 'dni' => '01547896',
-                // 'digito_verificador' => '2',
+                'digito_verificador' => '2',
                 'telefono' => '901470123',
             ],
             [
@@ -36,7 +36,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Gómez',
                 'direccion_domicilio' => 'Av. Los Álamos 23',
                 'dni' => '12247896',
-                // 'digito_verificador' => '3',
+                'digito_verificador' => '3',
                 'telefono' => '976210369',
             ],
             [
@@ -44,7 +44,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Palomino',
                 'direccion_domicilio' => 'Pasaje Primavera 12',
                 'dni' => '12547336',
-                // 'digito_verificador' => '4',
+                'digito_verificador' => '4',
                 'telefono' => '930142785',
             ],
             [
@@ -52,7 +52,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Fernández',
                 'direccion_domicilio' => 'Calle Los Rosales 45',
                 'dni' => '42947896',
-                // 'digito_verificador' => '5',
+                'digito_verificador' => '5',
                 'telefono' => '963852014',
             ],
             [
@@ -60,7 +60,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Torres',
                 'direccion_domicilio' => 'Jr. Las Flores 89',
                 'dni' => '02107896',
-                // 'digito_verificador' => '6',
+                'digito_verificador' => '6',
                 'telefono' => '963158102',
             ],
             [
@@ -68,7 +68,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Mendoza',
                 'direccion_domicilio' => 'Urb. Santa Rosa 101',
                 'dni' => '12540212',
-                // 'digito_verificador' => '7',
+                'digito_verificador' => '7',
                 'telefono' => '974102387',
             ],
             [
@@ -76,7 +76,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Salazar',
                 'direccion_domicilio' => 'Av. Miraflores 67',
                 'dni' => '12357896',
-                // 'digito_verificador' => '8',
+                'digito_verificador' => '8',
                 'telefono' => '901752365',
             ],
             [
@@ -84,7 +84,7 @@ class PersonaSeeder extends Seeder
                 'apellido' => 'Borda',
                 'direccion_domicilio' => 'Pasaje Primavera 12',
                 'dni' => '12000896',
-                // 'digito_verificador' => '9',
+                'digito_verificador' => '9',
                 'telefono' => '988534120',
             ]
         ]);

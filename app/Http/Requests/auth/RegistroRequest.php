@@ -29,7 +29,7 @@ class RegistroRequest extends FormRequest
             'apellido' => ['required', 'string', 'regex:/^[\pL\s]+$/u'],
             'direccion_domicilio' => ['required', 'string'],
             'dni' => ['required', 'string', 'regex:/^\d{8}$/', 'unique:personas,dni'],
-            // 'digito_verificador' => ['required', 'string', 'regex:/^\d{1}$/'],
+            'digito_verificador' => ['required', 'string', 'regex:/^\d{1}$/'],
             'telefono' => ['required', 'string', 'regex:/^\d{9}$/'],
             'email' => ['required', 'email', 'unique:clientes,username'],
             'password' => [

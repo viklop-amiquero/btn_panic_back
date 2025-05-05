@@ -35,17 +35,23 @@ class PasswordRecoverRequest extends FormRequest
                 }
             ],
 
-            'telefono' => [
+            'dni' => [
                 'required',
                 'string',
-                'regex:/^\d{9}$/',
+                'regex:/^[0-9]{8}$/',
                 function ($attribute, $value, $fail) {
-                    $existsInClientes = \App\Models\security\Persona::where('telefono', $value)->exists();
+                    $existsInClientes = \App\Models\security\Persona::where('dni', $value)->exists();
 
                     if (!$existsInClientes) {
-                        $fail('El teléfono no está registrado.');
+                        $fail('El DNI no está registrado.');
                     }
                 }
+            ],
+
+            'digito_verificador' => [
+                'required',
+                'string',
+                'regex:/^[0-9]$/',
             ],
 
             'password' => [
@@ -60,11 +66,13 @@ class PasswordRecoverRequest extends FormRequest
     public function messages()
     {
         return [
-            'required.required' => 'El usuario es obligatorio.',
-            'required.exists' => 'Esta cuenta no existe',
-            'telefono.required' => 'El teléfono es obligatorio.',
-            'telefono.regex' => 'Ingrese un número de celular válido',
-            'telefono.exists' => 'El teléfono no existe',
+            'username.required' => 'El usuario es obligatorio.',
+            'username.exists' => 'Esta cuenta no existe',
+            'dni.required' => 'El DNI es obligatorio.',
+            'dni.exists' => 'El DNI no existe',
+            'dni.regex' => 'Ingrese un número de DNI válido',
+            'digito_verificador.required' => 'El dígito verificador es obligatorio.',
+            'digito_verificador.regex' => 'Dígito verificador no válido.',
             'password' => 'El password es obligatorio.',
             'password.confirmed' => 'Debe confirmar su contraseña.',
             'password.*' => 'La contraseña de contener por lo menos una letra y un número.',

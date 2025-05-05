@@ -28,17 +28,11 @@ class PasswordController extends Controller
 
         $persona =  Persona::find($cliente->persona_id);
 
-        if (!$persona || $persona->telefono !== $request->telefono) {
+        if (!$persona || $cliente->username !== $request->username || $persona->dni !== $request->dni || $persona->digito_verificador !== $request->digito_verificador) {
             return response()->json([
-                'errors' => ['Usuario o teléfono no coinciden con los registrados.']
+                'errors' => ['Los datos ingresados no coinciden con la información registrada.']
             ], 422);
         }
-        // if ($persona->telefono !== $request->telefono) {
-        //     // return 'las credenciales no coinciden.';
-        //     return response([
-        //         'errors' => ['El usuario y/o teléfono no coincide con la información que se registró.']
-        //     ], 422);
-        // }
 
         $clave = Clave::find($cliente->clave_id);
 
@@ -48,7 +42,7 @@ class PasswordController extends Controller
         $clave->save();
 
         return response()->json([
-            "message" => 'Contraseña actualizada exitosamente.',
+            "message" => 'Contraseña actualizada exitosamente.'
         ]);
     }
 }

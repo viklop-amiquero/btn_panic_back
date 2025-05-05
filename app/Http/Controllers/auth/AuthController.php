@@ -29,7 +29,7 @@ class AuthController extends Controller
             'apellido' => strtoupper($data['apellido']),
             'direccion_domicilio' => strtoupper($data['direccion_domicilio']),
             'dni' => $data['dni'],
-            // 'digito_verificador'  => $data['digito_verificador'],
+            'digito_verificador'  => $data['digito_verificador'],
             'telefono'  => $data['telefono'],
             'created_at' => now()
         ]);
