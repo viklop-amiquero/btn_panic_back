@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\roles;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\roles\MenuCollection;
 use App\Models\roles\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -14,6 +16,14 @@ class MenuController extends Controller
     public function index()
     {
         //
+        $user = Auth::user();
+        if ($user->isUser()) {
+
+            return new MenuCollection(Menu::where('estado', '1')->get());
+        }
+        return response()->json([
+            'message' => 'Usuario no permitida.'
+        ], 403);
     }
 
     /**
