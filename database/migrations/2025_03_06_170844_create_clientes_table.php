@@ -27,6 +27,7 @@ return new class extends Migration
                 ->cascadeOnUpdate();
 
             $table->string('username')->unique();
+            $table->unsignedTinyInteger('password_attempts')->default(0);
             $table->boolean('verificado')->nullable();
             $table->char('estado', 1)->default('1');
             $table->integer('usuario_crea')
