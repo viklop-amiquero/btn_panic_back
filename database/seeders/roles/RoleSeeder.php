@@ -19,5 +19,17 @@ class RoleSeeder extends Seeder
             'descripcion' => 'Rol administrador',
             'estado' => '1',
         ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'SOPORTE',
+            'descripcion' => 'Rol administrador',
+            'estado' => '1',
+        ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'SERENAZGO',
+            'descripcion' => 'Rol administrador',
+            'estado' => '1',
+        ]);
     }
 }

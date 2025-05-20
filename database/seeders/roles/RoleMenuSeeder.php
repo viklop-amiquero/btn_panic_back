@@ -40,6 +40,16 @@ class RoleMenuSeeder extends Seeder
                     'role_id' => 1,
                     'menu_id' => 5,
                     'permiso_id' => 1,
+                ],
+                [
+                    'role_id' => 1,
+                    'menu_id' => 6,
+                    'permiso_id' => 1,
+                ],
+                [
+                    'role_id' => 1,
+                    'menu_id' => 7,
+                    'permiso_id' => 1,
                 ]
             ]
         );

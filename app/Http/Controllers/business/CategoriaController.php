@@ -18,6 +18,15 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+
+        if (!$user->isUser()) {
+            // cliente
+            return response()->json([
+                'message' => 'Acción no permitida.'
+            ], 403);
+            // return;
+        }
 
         return new CategoriaCollection(Categoria::where('estado', '1')->get());
     }
@@ -28,6 +37,17 @@ class CategoriaController extends Controller
     public function store(CategoriaRequest $request)
     {
         //
+        $user = Auth::user();
+
+        if (!$user->isUser()) {
+            // cliente
+            return response()->json([
+                'message' => 'Acción no permitida.'
+            ], 403);
+            // return;
+        }
+
+
         $data = $request->validated();
 
         $categoria = Categoria::create([
@@ -56,6 +76,17 @@ class CategoriaController extends Controller
     public function update(CategoriaRequest $request, $id)
     {
         //
+
+        $user = Auth::user();
+
+        if (!$user->isUser()) {
+            // cliente
+            return response()->json([
+                'message' => 'Acción no permitida.'
+            ], 403);
+            // return;
+        }
+
         $categoria = Categoria::find($id);
 
         if (!$categoria) {
@@ -82,6 +113,16 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
+        $user = Auth::user();
+
+        if (!$user->isUser()) {
+            // cliente
+            return response()->json([
+                'message' => 'Acción no permitida.'
+            ], 403);
+            // return;
+        }
+
         $categoria = Categoria::find($id);
 
         if (!$categoria) {
@@ -91,6 +132,8 @@ class CategoriaController extends Controller
         }
 
         $categoria->estado = '0';
+        $categoria->usuario_modifica = Auth::user()->id;
+        $categoria->updated_at = now();
         $categoria->save();
 
         return response()->json(['message' => 'Categoría eliminada exitosamente.']);

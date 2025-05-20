@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('parentesco', 200)->nullable();
             $table->string('nivel', 100);
             $table->string('orden');
-            $table->enum('tipo_menu', ['cliente', 'admin']);
             $table->char('estado', 1)->default('1');
             $table->integer('usuario_crea')
                 ->nullable();

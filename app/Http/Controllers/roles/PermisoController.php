@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\roles;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\roles\PermisoCollection;
 use App\Models\roles\Permiso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermisoController extends Controller
 {
@@ -14,6 +16,17 @@ class PermisoController extends Controller
     public function index()
     {
         //
+        $user = Auth::user();
+
+        if (!$user->isUser()) {
+            // cliente
+            return response()->json([
+                'message' => 'Acción no permitida.'
+            ], 403);
+            // return;
+        }
+
+        return new PermisoCollection(Permiso::all());
     }
 
     /**

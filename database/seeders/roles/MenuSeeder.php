@@ -16,16 +16,16 @@ class MenuSeeder extends Seeder
     {
         //
         $seguridad = uniqid();
+        $mantenimiento = uniqid();
 
         DB::table('menus')->insert([
             'nombre' => 'Dashboard',
-            'icono' => 'chart-line',
+            'icono' => 'analytics',
             'descripcion' => 'Panel de control de la apliación',
             'ruta' => '/dashboard',
             'nivel_parentesco' => uniqid(),
             'nivel' => '1', // identifica el menus: 1, sub menus: 2
             'orden' => '1', // el orden en que se mostrará menus y sub menús
-            'tipo_menu' => 'admin'
         ]);
 
         DB::table('menus')->insert([
@@ -36,18 +36,16 @@ class MenuSeeder extends Seeder
             // 'nivel_parentesco' => uniqid(),
             'nivel' => '1', // identifica el menus: 1, sub menus: 2
             'orden' => '2', // el orden en que se mostrará menus y sub menús
-            'tipo_menu' => 'admin'
         ]);
 
         // Menú y sub menú de seguridad
         DB::table('menus')->insert([
             'nombre' => 'Seguridad',
-            'icono' => 'shield-halved',
+            'icono' => 'verified_user',
             'descripcion' => 'Menú seguridad',
             'nivel_parentesco' => $seguridad,
             'nivel' => '1', // identifica el menus: 1, sub menus: 2
             'orden' => '5', // el orden en que se mostrará menus y sub menús
-            'tipo_menu' => 'admin'
 
         ]);
         DB::table('menus')->insert([
@@ -58,7 +56,6 @@ class MenuSeeder extends Seeder
             'nivel_parentesco' => uniqid(),
             'nivel' => '2',
             'orden' => '1',
-            'tipo_menu' => 'admin'
 
         ]);
         DB::table('menus')->insert([
@@ -69,7 +66,27 @@ class MenuSeeder extends Seeder
             'nivel_parentesco' => uniqid(),
             'nivel' => '2',
             'orden' => '2',
-            'tipo_menu' => 'admin'
+        ]);
+
+
+        DB::table('menus')->insert([
+            'nombre' => 'Mantenimiento',
+            'icono' => 'settings',
+            'descripcion' => 'Menú mantenimiento',
+            'nivel_parentesco' => $mantenimiento,
+            'nivel' => '1',
+            'orden' => '3'
+        ]);
+
+
+        DB::table('menus')->insert([
+            'nombre' => 'Categoría',
+            'descripcion' => 'Sub menú de mantenimiento',
+            'ruta' => '/categoria',
+            'parentesco' => $mantenimiento,
+            'nivel_parentesco' => uniqid(),
+            'nivel' => '2',
+            'orden' => '1'
         ]);
     }
 }
