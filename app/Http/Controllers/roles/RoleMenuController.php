@@ -30,7 +30,7 @@ class RoleMenuController extends Controller
             // return;
         }
 
-        return new RoleMenuCollection(RoleMenu::all());
+        return new RoleMenuCollection(RoleMenu::where('estado', '1')->get());
     }
 
     /**
