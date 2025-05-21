@@ -19,6 +19,7 @@ class RoleMenuResource extends JsonResource
             'id' => $this->id,
             'id_rol' => $this->role_id,
             'rol' => $this->role->nombre,
+            'rol_descripcion' => $this->role->descripcion,
             'menu' => $this->menu->nombre,
             'permiso' => $this->permiso->descripcion
         ];

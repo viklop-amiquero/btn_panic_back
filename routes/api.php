@@ -6,7 +6,6 @@ use App\Http\Controllers\business\ReporteController;
 use App\Http\Controllers\password\PasswordController;
 use App\Http\Controllers\roles\MenuController;
 use App\Http\Controllers\roles\PermisoController;
-use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\roles\RoleMenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

@@ -90,7 +90,7 @@ class CategoriaController extends Controller
         $categoria = Categoria::find($id);
 
         if (!$categoria) {
-            return response()->json(['message' => 'Categoría no encontrada'], 404);
+            return response()->json(['message' => 'Categoría no encontrada.'], 404);
         }
 
         $data = $request->validated();

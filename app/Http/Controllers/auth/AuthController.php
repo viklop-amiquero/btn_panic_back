@@ -63,8 +63,8 @@ class AuthController extends Controller
         $data = $request->validated();
 
         // Buscar si es un cliente o un usuario
-        $cliente = Cliente::where('username', $data['username'])->first();
-        $user = User::where('username', $data['username'])->first();
+        $cliente = Cliente::where('username', $data['username'])->where('estado', '1')->first();
+        $user = User::where('username', $data['username'])->where('estado', '1')->first();
 
         // Determinar qué tipo de usuario es
         $authEntity = $cliente ?? $user;
