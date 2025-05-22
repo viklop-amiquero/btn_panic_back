@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\business\CategoriaRequest;
 use App\Http\Resources\business\CategoriaCollection;
 use App\Models\business\Categoria;
-use App\Models\security\Cliente;
-use App\Models\security\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller

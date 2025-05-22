@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\rol\RolRequest;
 use App\Http\Resources\roles\RoleCollection;
 use App\Models\roles\Role;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\shared\services\auth\AuthorizeUser;
+use App\shared\services\roles\RoleMenuService;
+
 
 class RoleController extends Controller
 {
