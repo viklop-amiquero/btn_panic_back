@@ -7,6 +7,7 @@ use App\Http\Controllers\password\PasswordController;
 use App\Http\Controllers\roles\MenuController;
 use App\Http\Controllers\roles\PermisoController;
 use App\Http\Controllers\roles\RoleMenuController;
+use App\Http\Controllers\security\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/rol', RoleMenuController::class);
 
     Route::apiResource('/permiso', PermisoController::class);
+
+    Route::apiResource('/user', UserController::class);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
