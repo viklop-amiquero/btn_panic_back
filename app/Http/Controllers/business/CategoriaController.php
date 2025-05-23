@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\business\CategoriaRequest;
 use App\Http\Resources\business\CategoriaCollection;
 use App\Models\business\Categoria;
+use App\shared\services\business\CategoriaService;
 use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
@@ -13,19 +14,17 @@ class CategoriaController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    protected $categoriaService;
+
+    public function __construct(CategoriaService $categoriaService)
+    {
+        $this->categoriaService = $categoriaService;
+    }
+
     public function index()
     {
-        $user = Auth::user();
-
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
-
-        return new CategoriaCollection(Categoria::where('estado', '1')->get());
+        return $this->categoriaService->list();
     }
 
     /**
@@ -34,29 +33,7 @@ class CategoriaController extends Controller
     public function store(CategoriaRequest $request)
     {
         //
-        $user = Auth::user();
-
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
-
-
-        $data = $request->validated();
-
-        $categoria = Categoria::create([
-            'nombre' => strtoupper($data['nombre']),
-            'descripcion' => strtoupper($data['descripcion']),
-            'usuario_crea' => Auth::user()->id,
-            'created_at' => now()
-        ]);
-
-        return response()->json([
-            'message' => 'Categoría creado exitosamente.'
-        ]);
+        return $this->categoriaService->create($request->validated());
     }
 
     /**
@@ -73,35 +50,7 @@ class CategoriaController extends Controller
     public function update(CategoriaRequest $request, $id)
     {
         //
-
-        $user = Auth::user();
-
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
-
-        $categoria = Categoria::find($id);
-
-        if (!$categoria) {
-            return response()->json(['message' => 'Categoría no encontrada.'], 404);
-        }
-
-        $data = $request->validated();
-
-        $data['nombre'] = strtoupper($data['nombre']);
-        $data['descripcion'] = strtoupper($data['descripcion']);
-        $data['usuario_modifica'] = Auth::user()->id;
-
-        $categoria->update($data);
-
-        return response()->json([
-            'message' => 'Categoria actualizado exitosamente.',
-            'categoria' => $categoria
-        ]);
+        return $this->categoriaService->update($request->validated(), $id);
     }
 
     /**
@@ -110,29 +59,6 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
-        $user = Auth::user();
-
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
-
-        $categoria = Categoria::find($id);
-
-        if (!$categoria) {
-            return response()->json([
-                'message' => 'Categoría no encontrada'
-            ], 404);
-        }
-
-        $categoria->estado = '0';
-        $categoria->usuario_modifica = Auth::user()->id;
-        $categoria->updated_at = now();
-        $categoria->save();
-
-        return response()->json(['message' => 'Categoría eliminada exitosamente.']);
+        return $this->categoriaService->delete($id);
     }
 }
