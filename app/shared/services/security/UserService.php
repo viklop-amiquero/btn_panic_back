@@ -126,7 +126,7 @@ class UserService
             return response()->json(['message' => 'usuario no encontrada.'], 404);
         }
 
-        $user->estado - 0;
+        $user->estado = 0;
         $user->save();
 
         return response()->json([

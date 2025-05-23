@@ -2,14 +2,12 @@
 
 namespace App\Http\Requests\security;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password as PasswordRules;
 use App\Models\roles\Role;
-use App\Models\security\Persona;
 use App\Models\security\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +24,10 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $idParam = $this->route('user');
+        $user = User::find($idParam);
+
+        $personaId = $user->persona_id;
 
         return [
             //
@@ -36,7 +38,8 @@ class UserRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^\d{8}$/',
-                'unique:personas,dni',
+                Rule::unique('personas', 'dni')->ignore($personaId),
+
             ],
             'digito_verificador' => ['required', 'string', 'regex:/^\d{1}$/'],
             'telefono' => ['required', 'string', 'regex:/^\d{9}$/'],
@@ -68,7 +71,6 @@ class UserRequest extends FormRequest
             'digito_verificador.required' => 'El dígito verificador es obligatorio',
             'digito_verificador.regex' => 'El dígito verificador no es válido.',
             'telefono.required' => 'El número de celular es obligatorio.',
-            // 'telefono.*' => 'El número de celular no es válido.',
             'telefono.regex' => 'Ingrese un número de celular válido',
             'password.required' => 'La contraseña es obligatoria.',
             'password.confirmed' => 'Debe confirmar su contraseña.',
