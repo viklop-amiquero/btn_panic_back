@@ -6,31 +6,26 @@ use Illuminate\Http\Request;
 use App\Models\business\Reporte;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\business\ReporteRequest;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\business\ReporteCollection;
+use App\shared\services\business\ReporteService;
 
 class ReporteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    protected $reporteService;
+
+    public function __construct(ReporteService $reporteService)
+    {
+        $this->reporteService = $reporteService;
+    }
+
+
     public function index()
     {
-        $user = Auth::user();
-
-        if (!$user->isUser()) {
-            // Cliente
-            return new ReporteCollection(
-                Reporte::where('cliente_id', $user->id)->orderBy('created_at', 'DESC')
-                    ->paginate(10)
-            );
-        }
-
-        // Usuario;
-
-        return new ReporteCollection(
-            Reporte::paginate(10)
-        );
+        //
+        return $this->reporteService->list();
     }
 
 
@@ -40,41 +35,7 @@ class ReporteController extends Controller
     public function store(ReporteRequest $request)
     {
         //
-        $user = Auth::user();
-
-        if ($user->isUser()) {
-            // usuario
-            return response()->json([
-                'message' => 'Usuario no permitida.'
-            ], 403);
-            // return;
-        }
-
-
-
-        $data = $request->validated();
-
-        $path_image = null;
-
-        if ($request->hasfile('imagen')) {
-            $path_image = $request->file('imagen')->store('reportes', 'public');
-        }
-
-        $reporte = Reporte::create([
-            'imagen' => $path_image,
-            'descripcion' => $data['descripcion'],
-            'direccion' => $data['direccion'],
-            'categoria_id' => $data['categoria_id'],
-            'latitud' => $data['latitud'],
-            'longitud' => $data['longitud'],
-            'cliente_id' => $user->id,
-            'created_at' => now(),
-        ]);
-
-
-        return response()->json([
-            "message" => "El reporte ha sido enviado exitosamente."
-        ]);
+        return $this->reporteService->create($request->validated(), $request->file('imagen'));
     }
 
     /**
@@ -91,31 +52,7 @@ class ReporteController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = Auth::user();
-
-        if (!$user->isUser()) {
-            // Cliente
-            return response()->json([
-                'message' => 'Cliente no permitida.'
-            ], 403);
-            // return;
-        }
-
-        $reporte = Reporte::find($id);
-
-        if (!$reporte) {
-            return response()->json([
-                'message' => 'Reporte no encontrado.'
-            ], 404);
-        }
-
-        $reporte->estado = '2';
-        $reporte->usuario_modifica = Auth::user()->id;
-        $reporte->save();
-
-        return response()->json([
-            'message' => 'Reporte actualizado correctamente.'
-        ]);
+        return $this->reporteService->update($id);
     }
 
     /**
@@ -124,32 +61,6 @@ class ReporteController extends Controller
     public function destroy($id)
     {
         //
-        $user = Auth::user();
-
-        if ($user->isUser()) {
-            // usuario
-            return response()->json([
-                'message' => 'Usuario no permitido.'
-            ], 403);
-        }
-
-        $reporte = Reporte::where('id', $id)
-            ->where('cliente_id', $user->id)
-            ->first();
-
-        if (!$reporte) {
-            return response()->json([
-                'message' => 'Operación no permitida.'
-            ], 404);
-        }
-
-        $reporte->estado = '0';
-        $reporte->save();
-
-        return response()->json(
-            [
-                'message' => 'Reporte eliminado exitosamente.'
-            ]
-        );
+        return $this->reporteService->delete($id);
     }
 }

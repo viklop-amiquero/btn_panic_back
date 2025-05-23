@@ -4,12 +4,15 @@ namespace App\shared\Traits;
 
 use Illuminate\Support\Facades\Auth;
 
-trait AuthorizesUser
+trait AuthorizesCliente
 {
-    public function authorizeUser()
+
+    public function authorizeCliente()
     {
         $user = Auth::user();
-        if (!$user || !$user->isUser()) {
+
+        // Es un usuario
+        if ($user->isUser()) {
             // abort(403, 'Acción no permitida.');
             return response()->json([
                 'message' => 'Acción no permitida.'

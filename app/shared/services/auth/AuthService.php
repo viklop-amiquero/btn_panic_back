@@ -17,6 +17,7 @@ class AuthService
 
     public function store(array $data)
     {
+
         $persona = Persona::create([
             'nombre' => strtoupper($data['name']),
             'apellido' => strtoupper($data['apellido']),
