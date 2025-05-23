@@ -4,16 +4,26 @@ namespace App\Http\Controllers\security;
 
 use App\Http\Controllers\Controller;
 use App\Models\security\User;
+use App\shared\services\security\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        return $this->userService->list();
     }
 
     /**
@@ -22,6 +32,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        return $this->userService->create($request->validated());
     }
 
     /**
@@ -35,16 +46,18 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
+        return $this->userService->update($request->validated(), $id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
+        return $this->userService->delete($id);
     }
 }
