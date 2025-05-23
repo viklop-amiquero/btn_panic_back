@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\security;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\security\UserRequest;
 use App\Models\security\User;
 use App\shared\services\security\UserService;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         //
         return $this->userService->create($request->validated());
@@ -46,7 +47,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         //
         return $this->userService->update($request->validated(), $id);

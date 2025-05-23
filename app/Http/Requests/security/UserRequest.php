@@ -4,6 +4,7 @@ namespace App\Http\Requests\security;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password as PasswordRules;
+use App\Models\roles\Role;
 
 class UserRequest extends FormRequest
 {
@@ -30,12 +31,17 @@ class UserRequest extends FormRequest
             'dni' => ['required', 'string', 'regex:/^\d{8}$/', 'unique:personas,dni'],
             'digito_verificador' => ['required', 'string', 'regex:/^\d{1}$/'],
             'telefono' => ['required', 'string', 'regex:/^\d{9}$/'],
-            'role_id' => ['required', 'numeric'],
-            'password' => [
+            'role_id' => [
                 'required',
-                'confirmed',
-                PasswordRules::min(6)->letters()->numbers()
-            ]
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    $existsRol = Role::where('id', $value)->exists();
+
+                    if (!$existsRol) {
+                        $fail('No existe rol');
+                    }
+                }
+            ],
         ];
     }
 

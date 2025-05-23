@@ -3,6 +3,7 @@
 namespace App\Http\Requests\business;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\business\Categoria;
 
 class ReporteRequest extends FormRequest
 {
@@ -27,7 +28,17 @@ class ReporteRequest extends FormRequest
             'imagen' => 'nullable|image|max:2048',
             'descripcion' => 'required',
             'direccion' => ['required'],
-            'categoria_id' => ['required', 'numeric'],
+            'categoria_id' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    $existsRol = Categoria::where('id', $value)->exists();
+
+                    if (!$existsRol) {
+                        $fail('No existe categoria');
+                    }
+                }
+            ],
             'latitud' => ['required', 'numeric'],
             'longitud' => ['required', 'numeric']
             // 'cliente_id' => ['required', 'numeric']
