@@ -4,13 +4,8 @@ namespace App\Http\Controllers\roles;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\rol\RolRequest;
-use App\Http\Resources\roles\RoleCollection;
 use App\Models\roles\Role;
-use Illuminate\Support\Facades\Auth;
-use App\shared\services\auth\AuthorizeUser;
-use App\shared\services\roles\RoleMenuService;
 use App\shared\services\roles\RoleService;
-use App\shared\Traits\AuthorizesUser;
 
 class RoleController extends Controller
 {
