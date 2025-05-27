@@ -9,27 +9,37 @@ use App\Models\roles\Role;
 use Illuminate\Support\Facades\Auth;
 use App\shared\services\auth\AuthorizeUser;
 use App\shared\services\roles\RoleMenuService;
-
+use App\shared\services\roles\RoleService;
+use App\shared\Traits\AuthorizesUser;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    protected $roleService;
+
+    public function __construct(RoleService $roleService)
+    {
+        $this->roleService = $roleService;
+    }
+
     public function index()
     {
+        return $this->roleService->list();
         //
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
+        // if (!$user->isUser()) {
+        //     // cliente
+        //     return response()->json([
+        //         'message' => 'Acción no permitida.'
+        //     ], 403);
+        //     // return;
+        // }
 
-        return new RoleCollection(Role::where('estado', '1')->get());
+        // return new RoleCollection(Role::where('estado', '1')->get());
     }
 
     /**
@@ -37,29 +47,29 @@ class RoleController extends Controller
      */
     public function store(RolRequest $request)
     {
-        //
-        $user = Auth::user();
+        // //
+        // $user = Auth::user();
 
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
+        // if (!$user->isUser()) {
+        //     // cliente
+        //     return response()->json([
+        //         'message' => 'Acción no permitida.'
+        //     ], 403);
+        //     // return;
+        // }
 
-        $data = $request->validated();
+        // $data = $request->validated();
 
-        $role = Role::create([
-            'nombre' => strtoupper($data['nombre']),
-            'descripcion' => strtoupper($data['descripcion']),
-            'usuario_crea' => Auth::user()->id,
-            'created_at' => now()
-        ]);
+        // $role = Role::create([
+        //     'nombre' => strtoupper($data['nombre']),
+        //     'descripcion' => strtoupper($data['descripcion']),
+        //     'usuario_crea' => Auth::user()->id,
+        //     'created_at' => now()
+        // ]);
 
-        return response()->json([
-            'message' => 'Rol creado exitosamente.'
-        ]);
+        // return response()->json([
+        //     'message' => 'Rol creado exitosamente.'
+        // ]);
     }
 
     /**
@@ -75,35 +85,35 @@ class RoleController extends Controller
      */
     public function update(RolRequest $request,  $id)
     {
-        //
-        $user = Auth::user();
+        // //
+        // $user = Auth::user();
 
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
+        // if (!$user->isUser()) {
+        //     // cliente
+        //     return response()->json([
+        //         'message' => 'Acción no permitida.'
+        //     ], 403);
+        //     // return;
+        // }
 
-        $rol = Role::find($id);
+        // $rol = Role::find($id);
 
-        if (!$rol) {
-            return response()->json(['message' => 'Rol no encontrado.'], 404);
-        }
+        // if (!$rol) {
+        //     return response()->json(['message' => 'Rol no encontrado.'], 404);
+        // }
 
-        $data = $request->validated();
+        // $data = $request->validated();
 
-        $data['nombre'] = strtoupper($data['nombre']);
-        $data['descripcion'] = strtoupper($data['descripcion']);
-        $data['usuario_modifica'] = Auth::user()->id;
+        // $data['nombre'] = strtoupper($data['nombre']);
+        // $data['descripcion'] = strtoupper($data['descripcion']);
+        // $data['usuario_modifica'] = Auth::user()->id;
 
-        $rol->update($data);
+        // $rol->update($data);
 
-        return response()->json([
-            'message' => 'Categoria actualizado exitosamente.',
-            'categoria' => $rol
-        ]);
+        // return response()->json([
+        //     'message' => 'Categoria actualizado exitosamente.',
+        //     'categoria' => $rol
+        // ]);
     }
 
     /**
@@ -111,26 +121,26 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $user = Auth::user();
+        // //
+        // $user = Auth::user();
 
-        if (!$user->isUser()) {
-            // cliente
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
-            // return;
-        }
+        // if (!$user->isUser()) {
+        //     // cliente
+        //     return response()->json([
+        //         'message' => 'Acción no permitida.'
+        //     ], 403);
+        //     // return;
+        // }
 
-        $rol = Role::find($id);
-        if (!$rol) {
-            return response()->json(['message' => 'Rol no encontrado.'], 404);
-        }
+        // $rol = Role::find($id);
+        // if (!$rol) {
+        //     return response()->json(['message' => 'Rol no encontrado.'], 404);
+        // }
 
-        $rol->estado = '0';
-        $rol->usuario_modifica = Auth::user()->id;
-        $rol->updated_at = now();
+        // $rol->estado = '0';
+        // $rol->usuario_modifica = Auth::user()->id;
+        // $rol->updated_at = now();
 
-        $rol->save();
+        // $rol->save();
     }
 }

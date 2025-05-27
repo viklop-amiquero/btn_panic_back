@@ -6,6 +6,7 @@ use App\Http\Controllers\business\ReporteController;
 use App\Http\Controllers\password\PasswordController;
 use App\Http\Controllers\roles\MenuController;
 use App\Http\Controllers\roles\PermisoController;
+use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\roles\RoleMenuController;
 use App\Http\Controllers\security\UserController;
 use Illuminate\Http\Request;
@@ -28,6 +29,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Route::apiResource('/rol', RoleController::class);
     Route::apiResource('/rol', RoleMenuController::class);
+
+    Route::apiResource('/roles', RoleController::class);
 
     Route::apiResource('/permiso', PermisoController::class);
 
