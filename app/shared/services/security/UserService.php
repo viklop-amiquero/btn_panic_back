@@ -19,7 +19,7 @@ class UserService
     {
         $this->authorizeUser();
 
-        return new UserListCollection(User::all());
+        return new UserListCollection(User::paginate(20));
     }
 
     public function create(array $data)

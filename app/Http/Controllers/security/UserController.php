@@ -7,7 +7,6 @@ use App\Http\Requests\security\UserRequest;
 use App\Http\Requests\security\UserUpdateRequest;
 use App\Models\security\User;
 use App\shared\services\security\UserService;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -51,13 +50,6 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         //
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json([
-                'message' => 'No existe el usuario.'
-            ], 404);
-        }
 
         return $this->userService->update($request->validated(), $id);
     }
