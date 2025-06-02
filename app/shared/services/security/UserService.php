@@ -7,6 +7,7 @@ use App\Models\security\Clave;
 use App\Models\security\Persona;
 use App\shared\Traits\AuthorizesUser;
 use App\Http\Resources\security\UserListCollection;
+use App\Http\Resources\security\UserShowResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,7 +59,19 @@ class UserService
         ]);
     }
 
-    public function show() {}
+    public function show($id)
+    {
+        $this->authorizeUser();
+
+        $user = User::find($id);
+
+        // return $user;
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no encontrado.'], 404);
+        }
+
+        return new UserShowResource($user);
+    }
 
     public function update(array $data, int $id)
     {
@@ -68,13 +81,13 @@ class UserService
         $user = User::find($id);
 
         if (!$user) {
-            return response()->json(['message' => 'usuario no encontrada.'], 404);
+            return response()->json(['message' => 'usuario no encontrado.'], 404);
         }
 
         $persona = Persona::find($user->persona_id);
 
         if (!$persona) {
-            return response()->json(['message' => 'usuario no encontrada.'], 404);
+            return response()->json(['message' => 'usuario no encontrado.'], 404);
         }
 
         $clave = Clave::find($user->clave_id);

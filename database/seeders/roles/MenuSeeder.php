@@ -38,16 +38,6 @@ class MenuSeeder extends Seeder
             'orden' => '2', // el orden en que se mostrará menus y sub menús
         ]);
 
-        // Menú y sub menú de seguridad
-        DB::table('menus')->insert([
-            'nombre' => 'Seguridad',
-            'icono' => 'verified_user',
-            'descripcion' => 'Menú seguridad',
-            'nivel_parentesco' => $seguridad,
-            'nivel' => '1', // identifica el menus: 1, sub menus: 2
-            'orden' => '5', // el orden en que se mostrará menus y sub menús
-
-        ]);
         DB::table('menus')->insert([
             'nombre' => 'Usuarios',
             'descripcion' => 'Sub menú de seguridad',
@@ -75,7 +65,7 @@ class MenuSeeder extends Seeder
             'descripcion' => 'Menú mantenimiento',
             'nivel_parentesco' => $mantenimiento,
             'nivel' => '1',
-            'orden' => '3'
+            'orden' => '4'
         ]);
 
 
@@ -86,7 +76,18 @@ class MenuSeeder extends Seeder
             'parentesco' => $mantenimiento,
             'nivel_parentesco' => uniqid(),
             'nivel' => '2',
-            'orden' => '1'
+            'orden' => '3'
+        ]);
+
+        // Menú y sub menú de seguridad
+        DB::table('menus')->insert([
+            'nombre' => 'Seguridad',
+            'icono' => 'verified_user',
+            'descripcion' => 'Menú seguridad',
+            'nivel_parentesco' => $seguridad,
+            'nivel' => '1', // identifica el menus: 1, sub menus: 2
+            'orden' => '5', // el orden en que se mostrará menus y sub menús
+
         ]);
     }
 }
