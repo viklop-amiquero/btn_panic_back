@@ -25,6 +25,7 @@ class UserListResource extends JsonResource
 
 
         return [
+            'id' => $this->id,
             'username' => $this->username,
             'password_attempts' => $this->password_attempts,
             'estado' => $this->estado,
