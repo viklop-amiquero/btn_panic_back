@@ -75,7 +75,6 @@ class UserService
 
     public function update(array $data, int $id)
     {
-
         $this->authorizeUser();
 
         $user = User::find($id);
@@ -99,7 +98,7 @@ class UserService
         // return $clave;
 
         $persona->update([
-            'name' => $data['name'],
+            'nombre' => $data['name'],
             'apellido' => $data['apellido'],
             'direccion_domicilio' => $data['direccion_domicilio'],
             'dni' => $data['dni'],
