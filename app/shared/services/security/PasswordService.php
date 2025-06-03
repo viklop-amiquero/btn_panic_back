@@ -66,7 +66,7 @@ class PasswordService
         $clave->clave_reset = Hash::make($data['password']);
         $clave->save();
 
-        $cliente->tokens()->delete();
+        // $cliente->tokens()->delete();
 
         return response()->json([
             "message" => 'Contraseña actualizada exitosamente.'
@@ -86,7 +86,7 @@ class PasswordService
         $user->clave->clave_hash = $user->clave->clave_reset;
         $user->clave->save();
 
-        $user->tokens()->delete();
+        // $user->tokens()->delete();
 
         return response()->json([
             "message" => 'Se ha reseteado la contraseña exitosamente.'

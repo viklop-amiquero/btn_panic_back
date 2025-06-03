@@ -139,6 +139,7 @@ class UserService
         }
 
         $user->estado = 0;
+        $user->usuario_modifica = Auth::user()->id;
         $user->save();
 
         return response()->json([
