@@ -3,6 +3,7 @@
 namespace App\shared\Traits;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 
 trait AuthorizesCliente
 {
@@ -13,10 +14,11 @@ trait AuthorizesCliente
 
         // Es un usuario
         if ($user->isUser()) {
+            throw new AuthorizationException('Acción no permitida.');
             // abort(403, 'Acción no permitida.');
-            return response()->json([
-                'message' => 'Acción no permitida.'
-            ], 403);
+            // return response()->json([
+            //     'message' => 'Acción no permitida.'
+            // ], 403);
         }
     }
 }

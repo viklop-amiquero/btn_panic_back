@@ -35,6 +35,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/permiso', PermisoController::class);
 
     Route::apiResource('/user', UserController::class);
+
+    Route::post('/password-reset/{user}', [PasswordController::class, 'resetPassword']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
