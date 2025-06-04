@@ -20,6 +20,7 @@ class MenuSeeder extends Seeder
 
         DB::table('menus')->insert([
             'nombre' => 'Dashboard',
+            'clave' => 'dashboard',
             'icono' => 'analytics',
             'descripcion' => 'Panel de control de la apliación',
             'ruta' => '/dashboard',
@@ -30,6 +31,7 @@ class MenuSeeder extends Seeder
 
         DB::table('menus')->insert([
             'nombre' => 'Home',
+            'clave' => 'home',
             'icono' => 'home',
             'descripcion' => 'panel principal para todos los usuarios',
             'ruta' => '/home',
@@ -40,6 +42,7 @@ class MenuSeeder extends Seeder
 
         DB::table('menus')->insert([
             'nombre' => 'Usuarios',
+            'clave' => 'usuarios',
             'descripcion' => 'Sub menú de seguridad',
             'ruta' => '/usuario',
             'parentesco' => $seguridad,
@@ -50,6 +53,7 @@ class MenuSeeder extends Seeder
         ]);
         DB::table('menus')->insert([
             'nombre' => 'Roles',
+            'clave' => 'roles',
             'descripcion' => 'Sub menú de seguridad',
             'ruta' => '/rol',
             'parentesco' => $seguridad,
@@ -61,6 +65,7 @@ class MenuSeeder extends Seeder
 
         DB::table('menus')->insert([
             'nombre' => 'Mantenimiento',
+            'clave' => 'mantenimiento',
             'icono' => 'settings',
             'descripcion' => 'Menú mantenimiento',
             'nivel_parentesco' => $mantenimiento,
@@ -71,6 +76,7 @@ class MenuSeeder extends Seeder
 
         DB::table('menus')->insert([
             'nombre' => 'Categoría',
+            'clave' => 'categoria',
             'descripcion' => 'Sub menú de mantenimiento',
             'ruta' => '/categoria',
             'parentesco' => $mantenimiento,
@@ -82,6 +88,7 @@ class MenuSeeder extends Seeder
         // Menú y sub menú de seguridad
         DB::table('menus')->insert([
             'nombre' => 'Seguridad',
+            'clave' => 'seguridad',
             'icono' => 'verified_user',
             'descripcion' => 'Menú seguridad',
             'nivel_parentesco' => $seguridad,
