@@ -98,9 +98,9 @@ class UserService
         // return $clave;
 
         $persona->update([
-            'nombre' => $data['name'],
-            'apellido' => $data['apellido'],
-            'direccion_domicilio' => $data['direccion_domicilio'],
+            'nombre' => strtoupper($data['name']),
+            'apellido' => strtoupper($data['apellido']),
+            'direccion_domicilio' => strtoupper($data['direccion_domicilio']),
             'dni' => $data['dni'],
             'digito_verificador' => $data['digito_verificador'],
             'telefono' => $data['telefono'],
