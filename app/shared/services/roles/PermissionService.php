@@ -9,7 +9,7 @@ use App\Models\roles\RoleMenu;
 class PermissionService
 {
     // public static  function userHasPermission(User $user, string $menuKey, string $action): bool
-    public static  function userHasPermission(User $user, string $menuKey, string $action)
+    public static  function userHasPermission(User $user, string $menuKey, string $action): bool
     {
 
         $menu = Menu::where('clave', $menuKey)->first();
@@ -33,7 +33,7 @@ class PermissionService
             'create' => $permiso === 2 ? false : true,
             'read' => $permiso === 5 ? false : true,
             'update' => $permiso !== 4 && $permiso !== 1 ? false : true,
-            'delete' => $permiso !== 4 ? true : false,
+            'delete' => $permiso === 1   ? true : false,
             default => false,
         };
     }

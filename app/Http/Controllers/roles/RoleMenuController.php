@@ -35,7 +35,7 @@ class RoleMenuController extends Controller
     public function store(RolMenuRequest $request)
     {
         //
-        AuthorizationService::check('roles', 'create');
+        $permiso = AuthorizationService::check('roles', 'create');
         return $this->roleMenuService->create($request->validated());
     }
 

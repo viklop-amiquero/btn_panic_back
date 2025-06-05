@@ -34,7 +34,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         //
-        AuthorizationService::check('usuarios', 'create');
+        $permiso = AuthorizationService::check('usuarios', 'create');
 
         return $this->userService->create($request->validated());
     }
