@@ -4,10 +4,9 @@ namespace App\Http\Controllers\business;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\business\CategoriaRequest;
-use App\Http\Resources\business\CategoriaCollection;
 use App\Models\business\Categoria;
+use App\shared\services\authorization\AuthorizationService;
 use App\shared\services\business\CategoriaService;
-use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -24,6 +23,7 @@ class CategoriaController extends Controller
 
     public function index()
     {
+        AuthorizationService::check('categoria', 'read');
         return $this->categoriaService->list();
     }
 
@@ -33,6 +33,7 @@ class CategoriaController extends Controller
     public function store(CategoriaRequest $request)
     {
         //
+        AuthorizationService::check('categoria', 'create');
         return $this->categoriaService->create($request->validated());
     }
 
@@ -50,6 +51,7 @@ class CategoriaController extends Controller
     public function update(CategoriaRequest $request, $id)
     {
         //
+        AuthorizationService::check('categoria', 'update');
         return $this->categoriaService->update($request->validated(), $id);
     }
 
@@ -59,6 +61,7 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
+        AuthorizationService::check('categoria', 'delete');
         return $this->categoriaService->delete($id);
     }
 }

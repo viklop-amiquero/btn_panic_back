@@ -4,6 +4,7 @@ namespace App\Http\Controllers\roles;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\rol\RolMenuRequest;
+use App\shared\services\authorization\AuthorizationService;
 use App\shared\services\roles\RoleMenuService;
 
 // use App\shared\services\roles\RoleMenuService;
@@ -24,6 +25,7 @@ class RoleMenuController extends Controller
     public function index()
     {
         //
+        AuthorizationService::check('roles', 'read');
         return $this->roleMenuService->list();
     }
 
@@ -33,6 +35,7 @@ class RoleMenuController extends Controller
     public function store(RolMenuRequest $request)
     {
         //
+        AuthorizationService::check('roles', 'create');
         return $this->roleMenuService->create($request->validated());
     }
 
@@ -42,6 +45,7 @@ class RoleMenuController extends Controller
     public function show($id)
     {
         //
+        AuthorizationService::check('roles', 'show');
         return  $this->roleMenuService->show($id);
     }
 
@@ -51,6 +55,7 @@ class RoleMenuController extends Controller
     public function update(RolMenuRequest $request, $id)
     {
         //
+        AuthorizationService::check('roles', 'update');
         return $this->roleMenuService->update($id, $request->validated());
     }
 
@@ -61,6 +66,7 @@ class RoleMenuController extends Controller
     public function destroy($id)
     {
         //
+        AuthorizationService::check('roles', 'delete');
         return $this->roleMenuService->delete($id);
     }
 }
