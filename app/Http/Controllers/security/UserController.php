@@ -5,12 +5,11 @@ namespace App\Http\Controllers\security;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\security\UserRequest;
 use App\Http\Requests\security\UserUpdateRequest;
-use App\Models\security\User;
+use App\shared\services\authorization\AuthorizationService;
 use App\shared\services\security\UserService;
 
 class UserController extends Controller
 {
-
     protected $userService;
 
     public function __construct(UserService $userService)
@@ -21,9 +20,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        AuthorizationService::check('usuarios', 'read');
+
         return $this->userService->list();
     }
 
@@ -33,6 +34,8 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         //
+        AuthorizationService::check('usuarios', 'create');
+
         return $this->userService->create($request->validated());
     }
 
@@ -42,6 +45,8 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        AuthorizationService::check('usuarios', 'read');
+
         return $this->userService->show($id);
     }
 
@@ -51,6 +56,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         //
+        AuthorizationService::check('usuarios', 'update');
 
         return $this->userService->update($request->validated(), $id);
     }
@@ -61,6 +67,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        AuthorizationService::check('usuarios', 'delete');
+
         return $this->userService->delete($id);
     }
 }
