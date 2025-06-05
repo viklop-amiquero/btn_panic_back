@@ -9,7 +9,6 @@ use App\Http\Controllers\roles\PermisoController;
 use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\roles\RoleMenuController;
 use App\Http\Controllers\security\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
