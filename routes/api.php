@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\auth\roleMenuAuthController;
 use App\Http\Controllers\business\CategoriaController;
 use App\Http\Controllers\business\ReporteController;
 use App\Http\Controllers\password\PasswordController;
@@ -10,13 +11,12 @@ use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\roles\RoleMenuController;
 use App\Http\Controllers\security\UserController;
 use Illuminate\Support\Facades\Route;
-
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    // Route::get('/cliente', function (Request $request) {
+    // Route::get('/role-menu-auth', function (Request $request) {
     //     return $request->user()->persona;
     // });
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -37,6 +37,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/user', UserController::class);
 
     Route::post('/password-reset/{user}', [PasswordController::class, 'resetPassword']);
+
+    Route::get('/role-menu-auth', [roleMenuAuthController::class, 'show']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);

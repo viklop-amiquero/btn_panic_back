@@ -108,10 +108,7 @@ class AuthService
             'token' => $authEntity->createToken("{$role}-token")->plainTextToken,
             'role' => $role,
             'user' => new UserResource($authEntity),
-            // 'persona' => new PersonaResource($authEntity->persona)
-            // 'persona' => new UserResource($authEntity->persona)
             'persona' => new PersonaResource($authEntity->persona),
-            'role_menu' => new RoleMenuAuthCollection($roleMenu)
         ]);
     }
 
