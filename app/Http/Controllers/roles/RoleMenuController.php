@@ -45,7 +45,7 @@ class RoleMenuController extends Controller
     public function show($id)
     {
         //
-        AuthorizationService::check('roles', 'show');
+        AuthorizationService::check('roles', 'read');
         return  $this->roleMenuService->show($id);
     }
 
