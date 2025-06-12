@@ -6,6 +6,7 @@ use App\Models\business\Reporte;
 use Illuminate\Support\Facades\Auth;
 use App\shared\Traits\AuthorizesUser;
 use App\Http\Resources\business\ReporteCollection;
+use App\Http\Resources\business\ReporteShowResource;
 use App\shared\Traits\AuthorizesCliente;
 
 class ReporteService
@@ -28,7 +29,7 @@ class ReporteService
             // Cliente
             return new ReporteCollection(
                 Reporte::where('cliente_id', $user->id)->orderBy('created_at', 'DESC')
-                    ->paginate(10)
+                    ->paginate(20)
             );
         }
 
@@ -62,7 +63,13 @@ class ReporteService
         ]);
     }
 
-    public function show() {}
+    public function show(Reporte $reporte)
+    {
+        $this->authorizeUser();
+
+        return new ReporteShowResource($reporte);
+        // return $reporte;
+    }
 
     public function update(int $id)
     {
@@ -87,26 +94,89 @@ class ReporteService
 
     public function delete($id)
     {
-        //
-        // $this->authorizeCliente();
+        $user = Auth::user();
 
-        $reporte = Reporte::where('id', $id)
-            ->where('cliente_id', $this->user->id)
-            ->first();
+        if (!$user) {
+            return response()->json([
+                'message' => 'No autenticado.'
+            ], 401);
+        }
+
+        // Si es cliente, buscar por cliente_id
+        $query = Reporte::query();
+
+        if (!$user->isUser()) {
+            $query->where('cliente_id', $user->id);
+        }
+
+        $reporte = $query->where('id', $id)->first();
 
         if (!$reporte) {
             return response()->json([
-                'message' => 'Operación no permitida.'
+                'message' => 'Reporte no encontrado.'
             ], 404);
         }
 
         $reporte->estado = '0';
         $reporte->save();
 
-        return response()->json(
-            [
-                'message' => 'Reporte eliminado exitosamente.'
-            ]
-        );
+        return response()->json([
+            'message' => 'Reporte eliminado exitosamente.'
+        ]);
     }
+
+
+    // public function delete($id)
+    // {
+    //     //
+
+
+
+    //     // Es un cliente
+    //     $user = Auth::user();
+
+    //     if (!$user || !$user->isUser()) {
+    //         $reporte = Reporte::where('id', $id)
+    //             ->where('cliente_id', $this->user->id)
+    //             ->first();
+
+
+    //         if (!$reporte) {
+    //             return response()->json([
+    //                 'message' => 'Reporte no encontrado'
+    //             ], 404);
+    //         }
+
+    //         $reporte->estado = '0';
+    //         $reporte->save();
+
+    //         return response()->json(
+    //             [
+    //                 'message' => 'Reporte eliminado exitosamente.'
+    //             ]
+    //         );
+    //     }
+
+
+    //     // Es un usuario
+    //     if ($user->isUser()) {
+
+    //         $reporte = Reporte::find($id);
+
+    //         if (!$reporte) {
+    //             return response()->json([
+    //                 'message' => 'Reporte no encontrado.'
+    //             ], 404);
+    //         }
+
+    //         $reporte->estado = '0';
+    //         $reporte->save();
+
+    //         return response()->json(
+    //             [
+    //                 'message' => 'Reporte eliminado exitosamente.'
+    //             ]
+    //         );
+    //     }
+    // }
 }

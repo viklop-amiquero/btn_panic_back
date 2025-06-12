@@ -44,6 +44,7 @@ class ReporteController extends Controller
     public function show(Reporte $reporte)
     {
         //
+        return $this->reporteService->show($reporte);
     }
 
     /**

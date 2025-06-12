@@ -17,6 +17,7 @@ class MenuSeeder extends Seeder
         //
         $seguridad = uniqid();
         $mantenimiento = uniqid();
+        $reporte = uniqid();
 
         DB::table('menus')->insert([
             'nombre' => 'Dashboard',
@@ -35,7 +36,7 @@ class MenuSeeder extends Seeder
             'icono' => 'home',
             'descripcion' => 'panel principal para todos los usuarios',
             'ruta' => '/home',
-            // 'nivel_parentesco' => uniqid(),
+            'nivel_parentesco' => uniqid(),
             'nivel' => '1', // identifica el menus: 1, sub menus: 2
             'orden' => '2', // el orden en que se mostrará menus y sub menús
         ]);
@@ -62,6 +63,15 @@ class MenuSeeder extends Seeder
             'orden' => '2',
         ]);
 
+        DB::table('menus')->insert([
+            'nombre' => 'Reportes',
+            'clave' => 'reportes',
+            'icono' => 'campaign',
+            'descripcion' => 'Menú reportes',
+            'nivel_parentesco' => $reporte,
+            'nivel' => '1',
+            'orden' => '3'
+        ]);
 
         DB::table('menus')->insert([
             'nombre' => 'Mantenimiento',
@@ -94,7 +104,28 @@ class MenuSeeder extends Seeder
             'nivel_parentesco' => $seguridad,
             'nivel' => '1', // identifica el menus: 1, sub menus: 2
             'orden' => '5', // el orden en que se mostrará menus y sub menús
+        ]);
 
+        DB::table('menus')->insert([
+            'nombre' => 'Mapa',
+            'clave' => 'mapa',
+            // 'descripcion' => 'Menú seguridad',
+            'ruta' => '/mapa',
+            'parentesco' => $reporte,
+            'nivel_parentesco' => uniqid(),
+            'nivel' => '2', // identifica el menus: 1, sub menus: 2
+            'orden' => '1', // el orden en que se mostrará menus y sub menús
+        ]);
+
+        DB::table('menus')->insert([
+            'nombre' => 'Detalle',
+            'clave' => 'detalle',
+            // 'descripcion' => 'Menú seguridad',
+            'parentesco' => $reporte,
+            'ruta' => '/reporte',
+            'nivel_parentesco' => uniqid(),
+            'nivel' => '2', // identifica el menus: 1, sub menus: 2
+            'orden' => '2', // el orden en que se mostrará menus y sub menús
         ]);
     }
 }

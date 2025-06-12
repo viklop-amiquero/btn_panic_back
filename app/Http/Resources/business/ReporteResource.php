@@ -29,6 +29,7 @@ class ReporteResource extends JsonResource
             // 'user_id' => $this->user_id,
             'cliente_nombre' => $this->cliente->persona->nombre,
             'cliente_apellido' => $this->cliente->persona->apellido,
+            'telefono' => $this->cliente->persona->telefono,
             'latitud' => $this->latitud,
             'longitud' => $this->longitud,
             'estado' => $this->estado,
