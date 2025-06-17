@@ -2,6 +2,7 @@
 
 namespace App\shared\services\business;
 
+use App\Events\ReporteCreadoEvent;
 use App\Models\business\Reporte;
 use Illuminate\Support\Facades\Auth;
 use App\shared\Traits\AuthorizesUser;
@@ -56,6 +57,8 @@ class ReporteService
             'cliente_id' => $this->user->id,
             'created_at' => now(),
         ]);
+
+        broadcast(new ReporteCreadoEvent($reporte))->toOthers();
 
 
         return response()->json([
