@@ -66,7 +66,7 @@ class AuthService
 
         // Si no existe ni como cliente ni como usuario
         if (!$authEntity) {
-            return response([
+            return response()->json([
                 'errors' => ['El usuario y/o contraseña son incorrectos.']
             ], 422);
         }
@@ -76,7 +76,7 @@ class AuthService
 
         // Verificar la contraseña
         if (!$clave || !password_verify($data['password'], $clave->clave_hash)) {
-            return response([
+            return response()->json([
                 'errors' => ['El usuario y/o contraseña son incorrectos.']
             ], 422);
         }
