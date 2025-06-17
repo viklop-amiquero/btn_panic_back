@@ -82,11 +82,14 @@ class AuthService
         }
 
 
-        // Obtenr RoleMenu
-        $roleMenu = RoleMenu::where('role_id', $authEntity->role_id)->get();
+        // Obtenr RoleMenu si es usuario
+        if ($user) {
 
-        if ($roleMenu->isEmpty()) {
-            return response()->json(['message' => 'Rol no encontrado.'], 404);
+            $roleMenu = RoleMenu::where('role_id', $authEntity->role_id)->get();
+
+            if ($roleMenu->isEmpty()) {
+                return response()->json(['message' => 'Rol no encontrado.'], 404);
+            }
         }
 
 
