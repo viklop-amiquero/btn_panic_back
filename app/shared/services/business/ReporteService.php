@@ -2,13 +2,14 @@
 
 namespace App\shared\services\business;
 
-use App\Events\ReporteCreadoEvent;
 use App\Models\business\Reporte;
+use App\Events\ReporteCreadoEvent;
 use Illuminate\Support\Facades\Auth;
 use App\shared\Traits\AuthorizesUser;
+use App\shared\Traits\AuthorizesCliente;
 use App\Http\Resources\business\ReporteCollection;
 use App\Http\Resources\business\ReporteShowResource;
-use App\shared\Traits\AuthorizesCliente;
+use Illuminate\Support\Facades\Log;
 
 class ReporteService
 {
@@ -36,7 +37,7 @@ class ReporteService
 
 
         return new ReporteCollection(
-            Reporte::paginate(10)
+            Reporte::orderBy('created_at', 'DESC')->paginate(10)
         );
     }
 
@@ -59,7 +60,6 @@ class ReporteService
         ]);
 
         broadcast(new ReporteCreadoEvent($reporte))->toOthers();
-
 
         return response()->json([
             "message" => "El reporte ha sido enviado exitosamente."

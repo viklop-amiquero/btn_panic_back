@@ -10,6 +10,7 @@ use App\Http\Controllers\roles\PermisoController;
 use App\Http\Controllers\roles\RoleController;
 use App\Http\Controllers\roles\RoleMenuController;
 use App\Http\Controllers\security\UserController;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -44,3 +45,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/password-recover', [PasswordController::class, 'recoverPassword']);
+
+Broadcast::routes(['middleware' => 'auth:sanctum']);

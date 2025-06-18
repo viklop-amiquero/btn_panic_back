@@ -1,6 +1,8 @@
 <?php
 
+use App\shared\services\roles\PermissionService;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Log;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -13,5 +15,5 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('reportes', function ($user) {
-    return $user !== null; //  $user->isUser()
+    return true;
 });
