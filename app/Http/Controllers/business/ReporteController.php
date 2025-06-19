@@ -7,6 +7,7 @@ use App\Models\business\Reporte;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\business\ReporteRequest;
 use App\shared\services\business\ReporteService;
+use App\shared\services\authorization\AuthorizationService;
 
 class ReporteController extends Controller
 {
@@ -25,6 +26,7 @@ class ReporteController extends Controller
     public function index()
     {
         //
+        AuthorizationService::check('reportes', 'read');
         return $this->reporteService->list();
     }
 
@@ -35,6 +37,7 @@ class ReporteController extends Controller
     public function store(ReporteRequest $request)
     {
         //
+        AuthorizationService::check('reportes', 'create');
         return $this->reporteService->create($request->validated(), $request->file('imagen'));
     }
 
@@ -44,6 +47,8 @@ class ReporteController extends Controller
     public function show(Reporte $reporte)
     {
         //
+        AuthorizationService::check('reportes', 'read');
+
         return $this->reporteService->show($reporte);
     }
 
@@ -53,6 +58,8 @@ class ReporteController extends Controller
     public function update(Request $request, $id)
     {
         //
+        AuthorizationService::check('reportes', 'update');
+
         return $this->reporteService->update($id);
     }
 
@@ -62,6 +69,7 @@ class ReporteController extends Controller
     public function destroy($id)
     {
         //
+        AuthorizationService::check('reportes', 'delete');
         return $this->reporteService->delete($id);
     }
 }

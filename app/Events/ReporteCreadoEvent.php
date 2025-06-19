@@ -37,32 +37,13 @@ class ReporteCreadoEvent implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    // public function broadcastOn()
-    // {
-    //     new PrivateChannel('reportes');
-    // return [
-    //     new PrivateChannel('reportes'),
-    // ];
-    // }
     public function broadcastOn()
     {
         return new PrivateChannel('reportes');
     }
 
-    // public function broadcastOn()
-    // {
-    //     Log::info('🛰️ BroadcastOn ejecutado. Enviando al canal público reportes');
-    //     return new Channel('reportes');
-    // }
-
-
     public function broadcastAs(): string
     {
         return 'reporte.creado';
     }
-
-    // public function broadcastOn()
-    // {
-    //     return new Channel('reportes');
-    // }
 }

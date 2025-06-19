@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Log;
 Broadcast::channel('reportes', function ($user) {
     return true;
 });
+
+
+Broadcast::channel('reporte-updated', function ($id) {
+    return true;
+});

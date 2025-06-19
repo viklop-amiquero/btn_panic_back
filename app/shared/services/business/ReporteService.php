@@ -4,6 +4,7 @@ namespace App\shared\services\business;
 
 use App\Models\business\Reporte;
 use App\Events\ReporteCreadoEvent;
+use App\Events\ReporteUpdatedEvent;
 use Illuminate\Support\Facades\Auth;
 use App\shared\Traits\AuthorizesUser;
 use App\shared\Traits\AuthorizesCliente;
@@ -89,6 +90,10 @@ class ReporteService
         $reporte->estado = '2';
         $reporte->usuario_modifica = Auth::user()->id;
         $reporte->save();
+
+        // broadcast(new ReporteCreadoEvent($reporte))->toOthers();
+
+        broadcast(new ReporteUpdatedEvent($id))->toOthers();
 
         return response()->json([
             'message' => 'Reporte actualizado correctamente.'
