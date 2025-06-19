@@ -44,6 +44,7 @@ class MenuSeeder extends Seeder
         DB::table('menus')->insert([
             'nombre' => 'Usuarios',
             'clave' => 'usuarios',
+            'icono' => 'admin_panel_settings',
             'descripcion' => 'Sub menú de seguridad',
             'ruta' => '/usuario',
             'parentesco' => $seguridad,
@@ -55,6 +56,7 @@ class MenuSeeder extends Seeder
         DB::table('menus')->insert([
             'nombre' => 'Roles',
             'clave' => 'roles',
+            'icono' => 'assignment_ind',
             'descripcion' => 'Sub menú de seguridad',
             'ruta' => '/rol',
             'parentesco' => $seguridad,
@@ -87,6 +89,7 @@ class MenuSeeder extends Seeder
         DB::table('menus')->insert([
             'nombre' => 'Categoría',
             'clave' => 'categoria',
+            'icono' => 'category',
             'descripcion' => 'Sub menú de mantenimiento',
             'ruta' => '/categoria',
             'parentesco' => $mantenimiento,
@@ -110,6 +113,7 @@ class MenuSeeder extends Seeder
             'nombre' => 'Mapa',
             'clave' => 'mapa',
             // 'descripcion' => 'Menú seguridad',
+            'icono' => 'fmd_bad',
             'ruta' => '/mapa',
             'parentesco' => $reporte,
             'nivel_parentesco' => uniqid(),
@@ -121,6 +125,7 @@ class MenuSeeder extends Seeder
             'nombre' => 'Detalle',
             'clave' => 'detalle',
             // 'descripcion' => 'Menú seguridad',
+            'icono' => 'ballot',
             'parentesco' => $reporte,
             'ruta' => '/reporte',
             'nivel_parentesco' => uniqid(),

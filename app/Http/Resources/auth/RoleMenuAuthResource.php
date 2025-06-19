@@ -19,7 +19,7 @@ class RoleMenuAuthResource extends JsonResource
             'id' => $this->id,
             'role_id' => $this->role->id,
             'menu_clave' => $this->menu->clave,
-            'route' => $this->menu->ruta,
+            'ruta' => $this->menu->ruta,
             'icono' => $this->menu->icono,
             'menu_id' => $this->menu_id,
             'permiso_id' => $this->permiso_id,
