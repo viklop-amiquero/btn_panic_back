@@ -40,9 +40,12 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
         //
+        AuthorizationService::check('categoria', 'read');
+
+        return $this->categoriaService->show($id);
     }
 
     /**

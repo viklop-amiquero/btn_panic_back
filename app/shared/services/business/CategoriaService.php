@@ -4,6 +4,7 @@ namespace App\shared\services\business;
 
 use App\Models\business\Categoria;
 use App\Http\Resources\business\CategoriaCollection;
+use App\Http\Resources\business\CategoriaResource;
 use App\shared\Traits\AuthorizesUser;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,9 +15,10 @@ class CategoriaService
 
     public function list()
     {
-        //
-        return new CategoriaCollection(Categoria::where('estado', '1')->get());
+        $categorias = Categoria::where('estado', '1')->orderBy('created_at', 'DESC')->paginate(10); // 10 por página
+        return new CategoriaCollection($categorias);
     }
+
 
     public function create(array $data)
     {
@@ -36,7 +38,22 @@ class CategoriaService
         ]);
     }
 
-    public function show() {}
+    public function show($id)
+    {
+        $this->authorizeUser();
+
+        $categoria = Categoria::find($id);
+
+        if (!$categoria) {
+
+            return response()->json([
+                'message' => 'Categoría no encontrado.'
+            ], 404);
+        }
+
+
+        return new CategoriaResource($categoria);
+    }
 
     public function update(array $data, $id)
     {
